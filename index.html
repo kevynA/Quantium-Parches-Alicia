@@ -98,6 +98,7 @@
         .cart-icon {
             position: relative;
             cursor: pointer;
+            padding: 5px;
         }
         
         .cart-count {
@@ -113,6 +114,7 @@
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
+            font-weight: bold;
         }
         
         .mobile-menu-btn {
@@ -855,7 +857,7 @@
             box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
         }
         
-        /* Cart Modal */
+        /* Cart Modal - CORREGIDO */
         .cart-modal {
             display: none;
             position: fixed;
@@ -866,6 +868,10 @@
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 1001;
             justify-content: flex-end;
+        }
+        
+        .cart-modal.open {
+            display: flex;
         }
         
         .cart-content {
@@ -914,11 +920,19 @@
         
         .cart-item-info h4 {
             margin-bottom: 5px;
+            font-size: 1rem;
         }
         
         .cart-item-price {
             color: var(--primary);
             font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .cart-item-quantity {
@@ -937,6 +951,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #f0f0f0;
         }
         
         .remove-item {
@@ -944,7 +963,7 @@
             background: none;
             border: none;
             cursor: pointer;
-            margin-left: 10px;
+            font-size: 1rem;
         }
         
         .cart-total {
@@ -965,12 +984,19 @@
         
         .btn-checkout {
             background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
         }
         
         .btn-clear {
             background-color: #f8f9ff;
             color: var(--text);
             border: 1px solid #ddd;
+        }
+        
+        .empty-cart-message {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-light);
         }
         
         /* Responsive Design */
@@ -1423,6 +1449,7 @@
                 <!-- Los items del carrito se cargan aquí -->
                 <div class="empty-cart-message" id="emptyCartMessage">
                     <p>Tu carrito está vacío</p>
+                    <p>Agrega productos desde nuestra tienda</p>
                 </div>
             </div>
             
@@ -1432,8 +1459,14 @@
             </div>
             
             <div class="cart-actions">
-                <button class="btn btn-checkout" id="checkoutBtn">Completar Pedido por WhatsApp</button>
-                <button class="btn btn-clear" id="clearCartBtn">Vaciar Carrito</button>
+                <button class="btn btn-checkout" id="checkoutBtn">
+                    <i class="fab fa-whatsapp"></i>
+                    Completar Pedido por WhatsApp
+                </button>
+                <button class="btn btn-clear" id="clearCartBtn">
+                    <i class="fas fa-trash"></i>
+                    Vaciar Carrito
+                </button>
             </div>
         </div>
     </div>
@@ -1710,7 +1743,7 @@
             }, 3000);
         }
         
-        // Completar pedido por WhatsApp
+        // Completar pedido por WhatsApp - FUNCIONAL
         function completeOrder() {
             if (cart.length === 0) {
                 showNotification('Agrega productos al carrito primero');
@@ -1718,35 +1751,49 @@
             }
             
             // Crear mensaje para WhatsApp
-            let message = "Hola, estoy interesado en comprar los siguientes productos Quantum:\n\n";
+            let message = "¡Hola! Estoy interesado en comprar los siguientes productos Quantum:\n\n";
             
             cart.forEach(item => {
-                message += `- ${item.name} x${item.quantity}: $${(item.price * item.quantity).toFixed(2)}\n`;
+                message += `• ${item.name} x${item.quantity}: $${(item.price * item.quantity).toFixed(2)}\n`;
             });
             
             const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            message += `\nTotal: $${totalPrice.toFixed(2)}\n\n`;
-            message += "Por favor, quiero más información para completar mi pedido.";
+            message += `\n💰 *Total: $${totalPrice.toFixed(2)}*\n\n`;
+            message += "Por favor, necesito información para completar mi pedido:\n";
+            message += "1. Métodos de pago disponibles\n";
+            message += "2. Tiempos de envío\n";
+            message += "3. Costos de envío\n\n";
+            message += "¡Gracias!";
             
             // Codificar mensaje para URL
             const encodedMessage = encodeURIComponent(message);
             
             // Abrir WhatsApp con el mensaje
             window.open(`https://wa.me/15551234567?text=${encodedMessage}`, '_blank');
+            
+            // Cerrar el modal del carrito
+            cartModal.classList.remove('open');
+            
+            // Mostrar notificación de éxito
+            showNotification('Redirigiendo a WhatsApp para completar tu pedido');
         }
         
         // Actualizar enlace de WhatsApp con el contenido del carrito
         function updateWhatsAppLink() {
-            if (cart.length === 0) return;
+            if (cart.length === 0) {
+                // Si el carrito está vacío, usar mensaje predeterminado
+                whatsappButton.href = `https://wa.me/15551234567?text=${encodeURIComponent("Hola, estoy interesado en los parches Quantum. ¿Podrían darme más información?")}`;
+                return;
+            }
             
             let message = "Hola, estoy interesado en los siguientes productos Quantum:\n\n";
             
             cart.forEach(item => {
-                message += `- ${item.name} x${item.quantity}\n`;
+                message += `• ${item.name} x${item.quantity}\n`;
             });
             
             const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            message += `\nTotal: $${totalPrice.toFixed(2)}\n\n`;
+            message += `\n💰 Total aproximado: $${totalPrice.toFixed(2)}\n\n`;
             message += "Me gustaría más información sobre estos productos.";
             
             const encodedMessage = encodeURIComponent(message);
@@ -1878,11 +1925,12 @@
             displayProducts();
             updateCart();
             setupContactForm();
+            updateWhatsAppLink(); // Actualizar el enlace de WhatsApp inicial
             
-            // Event listeners
+            // Event listeners para el carrito - CORREGIDOS
             cartIcon.addEventListener('click', () => {
                 cartModal.classList.add('open');
-                updateWhatsAppLink();
+                updateWhatsAppLink(); // Actualizar el enlace cada vez que se abre el carrito
             });
             
             closeCart.addEventListener('click', () => {
