@@ -247,6 +247,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
         }
         
         .product-tag {
@@ -329,6 +330,123 @@
             justify-content: center;
             color: white;
             font-weight: bold;
+        }
+        
+        /* Social Media Section */
+        .social-media {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1a2a6c, #2a3c7f);
+            color: white;
+            text-align: center;
+        }
+        
+        .social-media .section-title {
+            color: white;
+        }
+        
+        .social-media .section-title:after {
+            background: linear-gradient(to right, #ff5e7d, #ff8a00);
+        }
+        
+        .social-intro {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .social-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-card:hover .social-icon {
+            transform: scale(1.1);
+        }
+        
+        .social-facebook .social-icon {
+            background: linear-gradient(135deg, #1877F2, #0d5cb6);
+        }
+        
+        .social-instagram .social-icon {
+            background: linear-gradient(135deg, #E4405F, #C13584, #833AB4);
+        }
+        
+        .social-tiktok .social-icon {
+            background: linear-gradient(135deg, #000000, #25F4EE, #FE2C55);
+        }
+        
+        .social-youtube .social-icon {
+            background: linear-gradient(135deg, #FF0000, #CC0000);
+        }
+        
+        .social-name {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .social-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .social-followers {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+        
+        .social-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
         }
         
         /* Contact */
@@ -636,6 +754,10 @@
                 font-size: 1rem;
             }
             
+            .social-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
             .whatsapp-button {
                 bottom: 20px;
                 right: 20px;
@@ -661,6 +783,10 @@
             .section-title {
                 font-size: 1.8rem;
             }
+            
+            .social-card {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -682,6 +808,7 @@
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#productos">Productos</a></li>
                     <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#redes">Redes Sociales</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                     <li>
                         <div class="cart-icon" id="cartIcon">
@@ -699,7 +826,7 @@
         <div class="container">
             <h1>Parches Quantum: Bienestar Natural</h1>
             <p>Descubre el poder de la tecnología cuántica aplicada al bienestar. Nuestros parches utilizan frecuencias específicas para ayudarte a dormir mejor, aliviar el dolor y recuperar tu energía vital sin medicamentos ni efectos secundarios.</p>
-            <a href="#productos" class="btn">Ver Productos</a>
+            <a href="#productos" class="btn" id="shopBtn">Explorar Productos</a>
         </div>
     </section>
 
@@ -760,6 +887,68 @@
         </div>
     </section>
 
+    <!-- Social Media Section -->
+    <section class="social-media" id="redes">
+        <div class="container">
+            <h2 class="section-title">Conéctate con Nosotros</h2>
+            <p class="social-intro">Síguenos en nuestras redes sociales para obtener consejos de bienestar, testimonios de clientes, promociones exclusivas y contenido especial sobre nuestros productos Quantum.</p>
+            
+            <div class="social-grid">
+                <div class="social-card social-facebook">
+                    <div class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3 class="social-name">Facebook</h3>
+                    <p class="social-description">Únete a nuestra comunidad en Facebook. Compartimos consejos de bienestar, ofertas especiales y respondemos a todas tus preguntas.</p>
+                    <div class="social-followers">
+                        <i class="fas fa-users"></i>
+                        <span>+15K seguidores</span>
+                    </div>
+                    <a href="https://facebook.com" target="_blank" class="social-btn">Seguir en Facebook</a>
+                </div>
+                
+                <div class="social-card social-instagram">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3 class="social-name">Instagram</h3>
+                    <p class="social-description">Contenido visual de nuestros productos en acción. Testimonios reales, videos demostrativos y sorteos exclusivos para seguidores.</p>
+                    <div class="social-followers">
+                        <i class="fas fa-users"></i>
+                        <span>+25K seguidores</span>
+                    </div>
+                    <a href="https://instagram.com" target="_blank" class="social-btn">Seguir en Instagram</a>
+                </div>
+                
+                <div class="social-card social-tiktok">
+                    <div class="social-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3 class="social-name">TikTok</h3>
+                    <p class="social-description">Videos cortos y divertidos sobre bienestar, demostraciones de productos y testimonios rápidos de nuestros clientes satisfechos.</p>
+                    <div class="social-followers">
+                        <i class="fas fa-users"></i>
+                        <span>+50K seguidores</span>
+                    </div>
+                    <a href="https://tiktok.com" target="_blank" class="social-btn">Seguir en TikTok</a>
+                </div>
+                
+                <div class="social-card social-youtube">
+                    <div class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3 class="social-name">YouTube</h3>
+                    <p class="social-description">Tutoriales completos, entrevistas con expertos en bienestar, testimonios detallados y contenido educativo sobre tecnología cuántica.</p>
+                    <div class="social-followers">
+                        <i class="fas fa-users"></i>
+                        <span>+10K suscriptores</span>
+                    </div>
+                    <a href="https://youtube.com" target="_blank" class="social-btn">Suscribirse</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact" id="contacto">
         <div class="container">
@@ -795,10 +984,10 @@
                     </div>
                     
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
@@ -806,13 +995,13 @@
                     <h3>Envíanos un mensaje</h3>
                     <form id="contactForm">
                         <div class="form-group">
-                            <input type="text" placeholder="Tu nombre" required>
+                            <input type="text" id="name" placeholder="Tu nombre" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Tu email" required>
+                            <input type="email" id="email" placeholder="Tu email" required>
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Tu mensaje" rows="5" required></textarea>
+                            <textarea id="message" placeholder="Tu mensaje" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn">Enviar Mensaje</button>
                     </form>
@@ -839,6 +1028,7 @@
                         <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#productos">Productos</a></li>
                         <li><a href="#testimonios">Testimonios</a></li>
+                        <li><a href="#redes">Redes Sociales</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
@@ -972,6 +1162,7 @@
         const whatsappButton = document.getElementById('whatsappButton');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mainNav = document.getElementById('mainNav');
+        const shopBtn = document.getElementById('shopBtn');
         
         // Mostrar productos
         function displayProducts() {
@@ -1242,6 +1433,18 @@
                 mainNav.classList.toggle('open');
             });
             
+            // Corregir el botón de la tienda
+            shopBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetElement = document.getElementById('productos');
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+            
             // Cerrar menú móvil al hacer clic en un enlace
             document.querySelectorAll('nav a').forEach(link => {
                 link.addEventListener('click', () => {
@@ -1271,7 +1474,8 @@
             const contactForm = document.getElementById('contactForm');
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                showNotification('Mensaje enviado. Nos pondremos en contacto contigo pronto.');
+                const name = document.getElementById('name').value;
+                showNotification(`Gracias ${name}, tu mensaje ha sido enviado. Nos pondremos en contacto contigo pronto.`);
                 this.reset();
             });
         }
