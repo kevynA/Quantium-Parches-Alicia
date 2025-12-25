@@ -51,7 +51,7 @@
             padding: 0 20px;
         }
         
-        /* Header - MEJORADO PARA MÓVIL */
+        /* Header - MEJORADO CON CARRITO A LA DERECHA */
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
@@ -66,6 +66,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         
         .logo {
@@ -75,16 +76,73 @@
             font-size: 1.8rem;
             font-weight: 900;
             z-index: 1002;
+            order: 1; /* Logo primero */
         }
         
         .logo i {
             color: #ffdd40;
         }
         
+        /* Menú móvil - CENTRALIZADO */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 1002;
+            padding: 5px;
+            order: 3; /* Menú móvil tercero */
+        }
+        
+        /* CARRITO - MEJORADO Y POSICIONADO A LA DERECHA */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            padding: 8px 10px;
+            margin-left: auto; /* Esto lo empuja a la derecha */
+            margin-right: 10px;
+            font-size: 1.3rem;
+            color: white;
+            z-index: 1002;
+            order: 2; /* Carrito segundo, después del logo */
+            transition: var(--transition);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .cart-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
         /* Navegación mejorada para móvil */
         nav {
             display: flex;
             align-items: center;
+            order: 4; /* Navegación al final */
         }
         
         nav ul {
@@ -105,42 +163,6 @@
         
         nav a:hover {
             background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-            padding: 5px;
-            margin-left: 10px;
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: var(--accent);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        /* Menú móvil mejorado */
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            z-index: 1002;
-            padding: 5px;
-            margin-left: 10px;
         }
         
         /* Hero Section - MEJORADA PARA MÓVIL */
@@ -1069,15 +1091,26 @@
             /* Menú móvil mejorado */
             .mobile-menu-btn {
                 display: block;
-                order: 2;
+                order: 3; /* Menú móvil después del carrito */
             }
             
             .logo {
                 order: 1;
+                flex: 1; /* Ocupa el espacio disponible */
+            }
+            
+            /* Carrito en móvil - mejor posicionado */
+            .cart-icon {
+                order: 2;
+                margin-left: 0;
+                margin-right: 10px;
+                padding: 6px 8px;
+                font-size: 1.2rem;
+                background: rgba(255, 255, 255, 0.15);
             }
             
             nav {
-                order: 3;
+                order: 4;
                 width: 100%;
                 max-height: 0;
                 overflow: hidden;
@@ -1117,11 +1150,6 @@
                 width: 100%;
                 padding: 0.7rem 0;
                 font-size: 1rem;
-            }
-            
-            .cart-icon {
-                margin-left: auto;
-                margin-right: 10px;
             }
             
             .hero h1 {
@@ -1288,6 +1316,11 @@
                 font-size: 1.5rem;
             }
             
+            .cart-icon {
+                font-size: 1.1rem;
+                padding: 5px 6px;
+            }
+            
             .product-title {
                 font-size: 1.1rem;
             }
@@ -1336,11 +1369,15 @@
             .contact-info, .contact-form-container {
                 padding: 1rem;
             }
+            
+            .cart-icon {
+                margin-right: 5px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header CON CARRITO MEJOR POSICIONADO -->
     <header>
         <div class="container header-container">
             <div class="logo">
@@ -1348,14 +1385,16 @@
                 <span>QUANTUM</span>
             </div>
             
+            <!-- Menú móvil en el centro -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Carrito a la derecha -->
             <div class="cart-icon" id="cartIcon">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count" id="cartCount">0</span>
             </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
             
             <nav id="mainNav">
                 <ul>
@@ -1816,9 +1855,15 @@
             });
         }
         
-        // Agregar producto al carrito
+        // Agregar producto al carrito CON EFECTO VISUAL
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
+            
+            // Efecto visual en el icono del carrito
+            cartIcon.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                cartIcon.style.transform = 'scale(1)';
+            }, 300);
             
             // Verificar si el producto ya está en el carrito
             const existingItem = cart.find(item => item.id === productId);
@@ -1860,6 +1905,9 @@
             // Actualizar total
             const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
             cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+            
+            // Actualizar enlace de WhatsApp
+            updateWhatsAppLink();
         }
         
         // Renderizar items del carrito
@@ -2161,12 +2209,10 @@
             displayProducts();
             updateCart();
             setupContactForm();
-            updateWhatsAppLink(); // Actualizar el enlace de WhatsApp inicial
             
             // Event listeners para el carrito
             cartIcon.addEventListener('click', () => {
                 cartModal.classList.add('open');
-                updateWhatsAppLink(); // Actualizar el enlace cada vez que se abre el carrito
             });
             
             closeCart.addEventListener('click', () => {
@@ -2247,6 +2293,15 @@
                         });
                     }
                 });
+            });
+            
+            // Efecto de hover para el carrito
+            cartIcon.addEventListener('mouseenter', () => {
+                cartIcon.style.transform = 'translateY(-2px)';
+            });
+            
+            cartIcon.addEventListener('mouseleave', () => {
+                cartIcon.style.transform = 'translateY(0)';
             });
         }
         
