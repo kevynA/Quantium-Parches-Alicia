@@ -121,12 +121,16 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
         
-        /* Hero Section - CON MÁS TRANSPARENCIA */
+        /* Hero Section - CON MÁS TRANSPARENCIA Y NUEVA IMAGEN */
         .hero {
-            background: linear-gradient(rgba(26, 26, 46, 0.6), rgba(26, 26, 46, 0.65)), 
+            background: linear-gradient(rgba(26, 26, 46, 0.7), rgba(26, 26, 46, 0.75)), 
                         url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            /* O puedes usar esta imagen alternativa más energética:
+            url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            */
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* Efecto parallax opcional */
             color: white;
             padding: 5rem 0;
             text-align: center;
@@ -157,6 +161,23 @@
             margin: 0 auto 2.5rem;
             padding: 0 10px;
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Efecto de partículas sutiles en el fondo */
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
         }
         
         /* CARRITO FLOTANTE (ÚNICA VERSIÓN) */
@@ -440,30 +461,124 @@
             color: var(--text-light);
         }
         
-        /* WhatsApp Button */
-        .whatsapp-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25D366;
+        /* Social Media Section */
+        .social-media {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #1a2a6c, #2a3c7f);
             color: white;
-            width: 65px;
-            height: 65px;
+            text-align: center;
+        }
+        
+        .social-media .section-title {
+            color: white;
+        }
+        
+        .social-media .section-title:after {
+            background: linear-gradient(to right, #ff5e7d, #ff8a00);
+        }
+        
+        .social-intro {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0 10px;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .social-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.8rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-icon {
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
-            z-index: 999;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
             transition: var(--transition);
-            text-decoration: none;
-            border: 3px solid rgba(255, 255, 255, 0.2);
         }
         
-        .whatsapp-button:hover {
-            transform: scale(1.15) translateY(-5px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.7);
+        .social-card:hover .social-icon {
+            transform: scale(1.1);
+        }
+        
+        .social-facebook .social-icon {
+            background: linear-gradient(135deg, #1877F2, #0d5cb6);
+        }
+        
+        .social-instagram .social-icon {
+            background: linear-gradient(135deg, #E4405F, #C13584, #833AB4);
+        }
+        
+        .social-tiktok .social-icon {
+            background: linear-gradient(135deg, #000000, #25F4EE, #FE2C55);
+        }
+        
+        .social-youtube .social-icon {
+            background: linear-gradient(135deg, #FF0000, #CC0000);
+        }
+        
+        .social-name {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .social-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .social-followers {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+        
+        .social-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.95rem;
+        }
+        
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
         }
         
         /* Contact Section */
@@ -714,6 +829,42 @@
             transform: translateX(5px);
         }
         
+        /* Elementos decorativos */
+        .contact-decoration {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .decoration-2 {
+            bottom: 15%;
+            right: 7%;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), #ff8a00);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(10deg);
+            }
+        }
+        
         /* Estados del formulario */
         .form-group.success .form-input,
         .form-group.success .form-textarea {
@@ -803,6 +954,32 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #aaa;
             font-size: 0.85rem;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            transition: var(--transition);
+            text-decoration: none;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .whatsapp-button:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.7);
         }
         
         /* Cart Modal */
@@ -979,11 +1156,18 @@
         }
         
         /* RESPONSIVE DESIGN */
+        @media (max-width: 1100px) {
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-container {
                 flex-wrap: wrap;
             }
             
+            /* Menú móvil */
             .mobile-menu-btn {
                 display: block;
             }
@@ -1037,6 +1221,7 @@
             .hero {
                 padding: 4rem 0;
                 min-height: 70vh;
+                background-attachment: scroll;
             }
             
             .hero h1 {
@@ -1046,6 +1231,52 @@
             .hero p {
                 font-size: 1.05rem;
                 padding: 0 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .footer-logo {
+                font-size: 1.4rem;
+            }
+            
+            .footer-links h4 {
+                font-size: 1.1rem;
+            }
+            
+            .footer-links a {
+                font-size: 0.9rem;
             }
             
             .whatsapp-button {
@@ -1068,11 +1299,86 @@
                 max-width: 100%;
                 padding: 1.5rem;
             }
+            
+            .contact-info, .contact-form-container {
+                padding: 1.5rem;
+            }
+            
+            .contact-item {
+                gap: 12px;
+            }
+            
+            .contact-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
         }
         
         @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 0;
+            }
+            
             .hero h1 {
                 font-size: 1.9rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .product-card {
+                max-width: 100%;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .footer-links {
+                margin-bottom: 1.5rem;
+            }
+            
+            .footer-links:last-child {
+                margin-bottom: 0;
+            }
+            
+            .submit-btn {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            .form-input, .form-textarea {
+                padding: 12px 14px;
+                font-size: 0.95rem;
+            }
+            
+            .testimonial-text {
+                font-size: 0.95rem;
+            }
+            
+            .testimonial-author h4 {
+                font-size: 1rem;
+            }
+            
+            .testimonial-author p {
+                font-size: 0.85rem;
             }
             
             .whatsapp-button {
@@ -1087,6 +1393,78 @@
                 right: 15px;
                 width: 55px;
                 height: 55px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .logo {
+                font-size: 1.6rem;
+            }
+            
+            .product-title {
+                font-size: 1.2rem;
+            }
+            
+            .product-price {
+                font-size: 1.4rem;
+            }
+            
+            .social-name {
+                font-size: 1.2rem;
+            }
+            
+            .social-description {
+                font-size: 0.9rem;
+            }
+            
+            .whatsapp-button, .cart-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .cart-float {
+                bottom: 160px;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero p {
+                font-size: 0.95rem;
+                padding: 0 10px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.95rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.4rem;
+            }
+            
+            .social-card {
+                padding: 1.5rem;
+            }
+            
+            .contact-info, .contact-form-container {
+                padding: 1.3rem;
             }
         }
     </style>
@@ -1109,7 +1487,9 @@
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#productos">Productos</a></li>
                     <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#redes">Redes Sociales</a></li>
                     <li><a href="#contacto">Contacto</a></li>
+                    <!-- NOTA: Carrito removido del menú -->
                 </ul>
             </nav>
         </div>
@@ -1128,6 +1508,9 @@
             <p>No elijas entre terapias y tecnología... ¡Combínalas y desata tu potencial total! Potencia tus sesiones de Reiki o Fisioterapia con nuestra tecnología cuántica de vanguardia para una transformación más rápida, profunda y duradera.</p>
             <a href="#productos" class="btn" id="shopBtn">Explorar Productos</a>
         </div>
+        
+        <!-- Partículas decorativas opcionales -->
+        <div class="hero-particles" id="heroParticles"></div>
     </section>
 
     <!-- Products Section -->
@@ -1193,6 +1576,70 @@
         </div>
     </section>
 
+    <!-- Social Media Section -->
+    <section class="social-media" id="redes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Conéctate con Nosotros</h2>
+                <p>Síguenos en nuestras redes sociales para obtener consejos de bienestar, testimonios y promociones exclusivas.</p>
+            </div>
+            
+            <div class="social-grid">
+                <div class="social-card social-facebook">
+                    <div class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3 class="social-name">Facebook</h3>
+                    <p class="social-description">Únete a nuestra comunidad en Facebook. Compartimos consejos de bienestar, ofertas especiales y respondemos a todas tus preguntas.</p>
+                    <div class="social-followers">
+                        <i class="fas fa-users"></i>
+                        <span>+15K seguidores</span>
+                    </div>
+                    <a href="https://facebook.com" target="_blank" class="social-btn">Seguir en Facebook</a>
+                </div>
+                
+                <div class="social-card social-instagram">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3 class="social-name">Instagram</h3>
+                    <p class="social-description">Contenido visual de nuestros productos en acción. Testimonios reales, videos demostrativos y sorteos exclusivos para seguidores.</p>
+                    <div class="social-followers">
+                        <i class="fas fa-users"></i>
+                        <span>+25K seguidores</span>
+                    </div>
+                    <a href="https://instagram.com" target="_blank" class="social-btn">Seguir en Instagram</a>
+                </div>
+                
+                <div class="social-card social-tiktok">
+                    <div class="social-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3 class="social-name">TikTok</h3>
+                    <p class="social-description">Videos cortos y divertidos sobre bienestar, demostraciones de productos y testimonios rápidos de nuestros clientes satisfechos.</p>
+                    <div class="social-followers">
+                        <i class="fas fa-users"></i>
+                        <span>+50K seguidores</span>
+                    </div>
+                    <a href="https://tiktok.com" target="_blank" class="social-btn">Seguir en TikTok</a>
+                </div>
+                
+                <div class="social-card social-youtube">
+                    <div class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3 class="social-name">YouTube</h3>
+                    <p class="social-description">Tutoriales completos, entrevistas con expertos en bienestar, testimonios detallados y contenido educativo sobre tecnología cuántica.</p>
+                    <div class="social-followers">
+                        <i class="fas fa-users"></i>
+                        <span>+10K suscriptores</span>
+                    </div>
+                    <a href="https://youtube.com" target="_blank" class="social-btn">Suscribirse</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact-section" id="contacto">
         <div class="container">
@@ -1200,6 +1647,9 @@
                 <h2>Contáctanos</h2>
                 <p>¿Tienes preguntas sobre nuestros productos Quantum? ¿Necesitas asesoramiento personalizado? Estamos aquí para ayudarte.</p>
             </div>
+            
+            <div class="contact-decoration decoration-1"></div>
+            <div class="contact-decoration decoration-2"></div>
             
             <div class="contact-container">
                 <div class="contact-info">
@@ -1223,8 +1673,31 @@
                         </div>
                         <div class="contact-details">
                             <h4>Email</h4>
-                            <p class="highlight">info@quantumparches.com</p>
+                            <p class="highlight">cuantumealiinfo@gmail.com</p>
                             <p>Respuesta en menos de 24 horas hábiles</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Horario de Atención</h4>
+                            <p><strong>Lunes a Viernes:</strong> 9:00 AM - 18:00 PM</p>
+                            <p><strong>Sábados:</strong> 10:00 AM - 14:00 PM</p>
+                            <p><strong>Domingos:</strong> Cerrado</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Ubicación</h4>
+                            <p>Ibarra - Las Cuatro Esquinas</p>
+                            <p>Ecuador</p>
                         </div>
                     </div>
                 </div>
@@ -1296,6 +1769,7 @@
                         <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#productos">Productos</a></li>
                         <li><a href="#testimonios">Testimonios</a></li>
+                        <li><a href="#redes">Redes Sociales</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
@@ -1305,8 +1779,18 @@
                     <ul>
                         <li><a href="#productos">Parches Quantum Sleep</a></li>
                         <li><a href="#productos">Parches Quantum Pain</a></li>
-                        <li><a href="#productos">Parches Quantum Energy</a></li>
-                        <li><a href="#productos">Parches Quantum Focus</a></li>
+                        <li><a href="#productos">Fisioterapia</a></li>
+                        <li><a href="#productos">Terapia Reiki</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                        <li><a href="#">Garantía y devoluciones</a></li>
+                        <li><a href="#">Envíos y pagos</a></li>
                     </ul>
                 </div>
             </div>
@@ -1357,702 +1841,512 @@
     </div>
 
     <script>
-    // ==============================================
-    // CONFIGURACIÓN Y DATOS
-    // ==============================================
-    
-    // Datos de productos
-    const products = [
-        {
-            id: 1,
-            name: "Parche Quantumé Sleep",
-            description: "Parche con frecuencias específica para inducir un sueño profundo y reparador. Ayudan a regular el ciclo circadiano y mejorar la calidad del descanso.",
-            price: 5.00,
-            image: "concepto-de-personas-trabajo-cansancio-y-exceso-de-trabajo-ingeniero-masculino-sonoliento-aburrido-tr.webp",
-            tags: ["Sueño", "Relajación", "Descanso"]
-        },
-        {
-            id: 2,
-            name: "Parche Quantumé Pain",
-            description: "Tecnología cuántica para aliviar dolores musculares y articulares. Emite frecuencias que reducen la inflamación y promueven la recuperación natural.",
-            price: 5.00,
-            image: "el-joven-deportista-disgustado-tiene-sentimientos-dolorosos-en-la-pierna.webp",
-            tags: ["Dolor", "Recuperación", "Antiinflamatorio"]
-        },
-        {
-            id: 3,
-            name: "Fisioterapia",
-            description: "Recupera tu función muscular y alivia tensiones con sesiones de fisioterapia manual, diseñadas para estimular la circulación energética y restaurar el equilibrio natural de tu cuerpo.",
-            price: 39.99,
-            image: "enfermera-con-paciente-en-sesion-de-osteopatia.webp",
-            tags: ["Terapia", "Sanación", "Continuidad"]
-        },
-        {
-            id: 4,
-            name: "Terapia Reiki",
-            description: "Aumenta tu energía y equilibrio con sesiones de Reiki, diseñadas para estimular el flujo energético y promover un bienestar integral.",
-            price: 29.99,
-            image: "persona-que-realiza-terapia-de-reiki.webp",
-            tags: ["Concentración", "Mental", "Productividad"]
-        },
-        {
-            id: 5,
-            name: "Parches Quantumé Sleep",
-            description: "Paquete completo con nuestros parches. Ahorra un 20% comprando el kit completo.",
-            price: 150.00,
-            image: "qn1.webp",
-            tags: ["Combo", "Ahorro", "Completo"]
-        },
-        {
-            id: 6,
-            name: "Parches Quantumé Pain",
-            description: "Paquete completo con nuestros parches. Ahorra un 20% comprando el kit completo.",
-            price: 150.00,
-            image: "qn2.webp",
-            tags: ["Combo", "Ahorro", "Completo"]
-        }
-    ];
+        // Datos de productos
+        const products = [
+            {
+                id: 1,
+                name: "Parches Quantumé Sleep",
+                description: "30 Parches con frecuencias específica para inducir un sueño profundo y reparador. Ayudan a regular el ciclo circadiano y mejorar la calidad del descanso. ¡Contactate y recibe hasta un 20% de descuento!",
+                price: 150.00,
+                image: "qn1.webp",
+                tags: ["Sueño", "Relajación", "Descanso"]
+            },
+            {
+                id: 2,
+                name: "Parches Quantumé Pain",
+                description: "Tecnología cuántica para aliviar dolores musculares y articulares. Los 30 parches emiten frecuencias que reducen la inflamación y promueven la recuperación natural. ¡Contactate y recibe hasta un 20% de descuento!",
+                price: 150.00,
+                image: "qn2.webp",
+                tags: ["Dolor", "Recuperación", "Antiinflamatorio"]
+            },
+            {
+                id: 3,
+                name: "Fisioterapia",
+                description: "Recupera tu función muscular y alivia tensiones con sesiones de fisioterapia manual, diseñadas para estimular la circulación energética y restaurar el equilibrio natural de tu cuerpo.",
+                price: 39.99,
+                image: "enfermera-con-paciente-en-sesion-de-osteopatia.webp",
+                tags: ["Terapia", "Sanación", "Continuidad"]
+            },
+            {
+                id: 4,
+                name: "Terapia Reiki",
+                description: "Aumenta tu energía y equilibrio con sesiones de Reiki, diseñadas para estimular el flujo energético y promover un bienestar integral.",
+                price: 29.99,
+                image: "persona-que-realiza-terapia-de-reiki.webp",
+                tags: ["Concentración", "Mental", "Productividad"]
+            },
+        ];
 
-    // Carrito de compras
-    let cart = JSON.parse(localStorage.getItem('quantumCart')) || [];
-    
-    // URL de Google Apps Script (YA LA TIENES CORRECTA)
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzxhreGjJR3jA1McApUqONsTivc8ElWGgXAkajaI7MlNgggvpXsj_5MNEQjCZdzxrby/exec';
-    
-    // ==============================================
-    // ELEMENTOS DEL DOM
-    // ==============================================
-    
-    // Obtener elementos una sola vez para mejor performance
-    const elements = {
-        productsGrid: document.getElementById('productsGrid'),
-        cartFloat: document.getElementById('cartFloat'),
-        cartFloatCount: document.getElementById('cartFloatCount'),
-        cartModal: document.getElementById('cartModal'),
-        closeCart: document.getElementById('closeCart'),
-        cartItems: document.getElementById('cartItems'),
-        emptyCartMessage: document.getElementById('emptyCartMessage'),
-        cartTotal: document.getElementById('cartTotal'),
-        checkoutBtn: document.getElementById('checkoutBtn'),
-        clearCartBtn: document.getElementById('clearCartBtn'),
-        whatsappButton: document.getElementById('whatsappButton'),
-        mobileMenuBtn: document.getElementById('mobileMenuBtn'),
-        mainNav: document.getElementById('mainNav'),
-        shopBtn: document.getElementById('shopBtn'),
-        contactForm: document.getElementById('contactForm'),
-        formMessage: document.getElementById('formMessage'),
-        nameInput: document.getElementById('name'),
-        emailInput: document.getElementById('email'),
-        phoneInput: document.getElementById('phone'),
-        subjectSelect: document.getElementById('subject'),
-        messageTextarea: document.getElementById('message')
-    };
-
-    // ==============================================
-    // FUNCIONES DE CARRITO DE COMPRAS
-    // ==============================================
-    
-    // Mostrar productos
-    function displayProducts() {
-        elements.productsGrid.innerHTML = '';
+        // Carrito de compras
+        let cart = JSON.parse(localStorage.getItem('quantumCart')) || [];
         
-        products.forEach(product => {
-            const productCard = document.createElement('div');
-            productCard.className = 'product-card';
+        // Elementos del DOM
+        const productsGrid = document.getElementById('productsGrid');
+        const cartFloat = document.getElementById('cartFloat');
+        const cartFloatCount = document.getElementById('cartFloatCount');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const clearCartBtn = document.getElementById('clearCartBtn');
+        const whatsappButton = document.getElementById('whatsappButton');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const shopBtn = document.getElementById('shopBtn');
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        const heroParticles = document.getElementById('heroParticles');
+        
+        // Mostrar productos
+        function displayProducts() {
+            productsGrid.innerHTML = '';
             
-            const tagsHtml = product.tags.map(tag => `<span class="product-tag">${tag}</span>`).join('');
-            
-            productCard.innerHTML = `
-                <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">${product.name}</h3>
-                    <p class="product-description">${product.description}</p>
-                    <div class="product-tags">${tagsHtml}</div>
-                    <div class="product-price">$${product.price.toFixed(2)}</div>
-                    <button class="add-to-cart" data-id="${product.id}">
-                        <i class="fas fa-cart-plus"></i> Agregar al carrito
-                    </button>
-                </div>
-            `;
-            
-            elements.productsGrid.appendChild(productCard);
-        });
-        
-        // Agregar event listeners a los botones de carrito
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = parseInt(this.getAttribute('data-id'));
-                addToCart(productId);
-            });
-        });
-    }
-    
-    // Agregar producto al carrito
-    function addToCart(productId) {
-        const product = products.find(p => p.id === productId);
-        
-        if (!product) {
-            showNotification('Producto no encontrado', 'error');
-            return;
-        }
-        
-        // Efecto visual en el icono del carrito
-        elements.cartFloat.style.transform = 'scale(1.3)';
-        setTimeout(() => {
-            elements.cartFloat.style.transform = 'scale(1)';
-        }, 300);
-        
-        // Verificar si el producto ya está en el carrito
-        const existingItem = cart.find(item => item.id === productId);
-        
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                quantity: 1
-            });
-        }
-        
-        updateCart();
-        showNotification(`✅ ${product.name} agregado al carrito`, 'success');
-    }
-    
-    // Actualizar carrito
-    function updateCart() {
-        // Guardar en localStorage
-        localStorage.setItem('quantumCart', JSON.stringify(cart));
-        
-        // Actualizar contador del carrito
-        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-        elements.cartFloatCount.textContent = totalItems;
-        
-        // Agregar o remover clase de pulso si hay productos
-        if (totalItems > 0) {
-            elements.cartFloat.classList.add('has-items');
-        } else {
-            elements.cartFloat.classList.remove('has-items');
-        }
-        
-        // Mostrar/ocultar mensaje de carrito vacío
-        elements.emptyCartMessage.style.display = cart.length === 0 ? 'block' : 'none';
-        
-        // Actualizar items del carrito en el modal
-        renderCartItems();
-        
-        // Actualizar total
-        const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-        elements.cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
-        
-        // Actualizar enlace de WhatsApp
-        updateWhatsAppLink();
-    }
-    
-    // Renderizar items del carrito
-    function renderCartItems() {
-        elements.cartItems.innerHTML = '';
-        
-        cart.forEach(item => {
-            const cartItem = document.createElement('div');
-            cartItem.className = 'cart-item';
-            
-            cartItem.innerHTML = `
-                <div class="cart-item-info">
-                    <h4>${item.name}</h4>
-                    <div class="cart-item-price">$${item.price.toFixed(2)} c/u</div>
-                </div>
-                <div class="cart-item-controls">
-                    <div class="cart-item-quantity">
-                        <button class="quantity-btn decrease" data-id="${item.id}">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="quantity-btn increase" data-id="${item.id}">+</button>
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                const tagsHtml = product.tags.map(tag => `<span class="product-tag">${tag}</span>`).join('');
+                
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'">
                     </div>
-                    <button class="remove-item" data-id="${item.id}">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            `;
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-tags">${tagsHtml}</div>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <button class="add-to-cart" data-id="${product.id}">
+                            <i class="fas fa-cart-plus"></i> Agregar al carrito
+                        </button>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
             
-            elements.cartItems.appendChild(cartItem);
-        });
-        
-        // Agregar event listeners a los controles de cantidad
-        document.querySelectorAll('.decrease').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = parseInt(this.getAttribute('data-id'));
-                updateQuantity(productId, -1);
+            // Agregar event listeners a los botones de carrito
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    addToCart(productId);
+                });
             });
-        });
+        }
         
-        document.querySelectorAll('.increase').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = parseInt(this.getAttribute('data-id'));
-                updateQuantity(productId, 1);
-            });
-        });
-        
-        // Agregar event listeners a los botones de eliminar
-        document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = parseInt(this.getAttribute('data-id'));
-                removeFromCart(productId);
-            });
-        });
-    }
-    
-    // Actualizar cantidad de un producto
-    function updateQuantity(productId, change) {
-        const item = cart.find(item => item.id === productId);
-        
-        if (item) {
-            item.quantity += change;
+        // Agregar producto al carrito CON EFECTO VISUAL
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
             
-            // Eliminar si la cantidad es 0 o menos
-            if (item.quantity <= 0) {
-                cart = cart.filter(item => item.id !== productId);
-                showNotification('Producto removido del carrito', 'warning');
+            // Efecto visual en el icono del carrito
+            cartFloat.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                cartFloat.style.transform = 'scale(1)';
+            }, 300);
+            
+            // Verificar si el producto ya está en el carrito
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1
+                });
             }
             
             updateCart();
-        }
-    }
-    
-    // Eliminar producto del carrito
-    function removeFromCart(productId) {
-        const item = cart.find(item => item.id === productId);
-        if (item) {
-            showNotification(`❌ ${item.name} removido del carrito`, 'warning');
-        }
-        cart = cart.filter(item => item.id !== productId);
-        updateCart();
-    }
-    
-    // Vaciar carrito
-    function clearCart() {
-        if (cart.length === 0) {
-            showNotification('El carrito ya está vacío', 'info');
-            return;
+            showNotification(`${product.name} agregado al carrito`);
         }
         
-        cart = [];
-        updateCart();
-        showNotification('🛒 Carrito vaciado correctamente', 'info');
-    }
-    
-    // Completar pedido por WhatsApp
-    function completeOrder() {
-        if (cart.length === 0) {
-            showNotification('Agrega productos al carrito primero', 'error');
-            return;
-        }
-        
-        // Guardar temporalmente el contenido del carrito para el mensaje
-        const cartCopy = [...cart];
-        
-        // Crear mensaje para WhatsApp
-        let message = "¡Hola! Estoy interesado en comprar los siguientes productos Quantum:\n\n";
-        
-        cartCopy.forEach(item => {
-            message += `• ${item.name} x${item.quantity}: $${(item.price * item.quantity).toFixed(2)}\n`;
-        });
-        
-        const totalPrice = cartCopy.reduce((total, item) => total + (item.price * item.quantity), 0);
-        message += `\n💰 *Total: $${totalPrice.toFixed(2)}*\n\n`;
-        message += "Por favor, necesito información para completar mi pedido:\n";
-        message += "1. Métodos de pago disponibles\n";
-        message += "2. Tiempos de envío\n";
-        message += "3. Costos de envío\n\n";
-        message += "¡Gracias!";
-        
-        // Codificar mensaje para URL
-        const encodedMessage = encodeURIComponent(message);
-        
-        // Cerrar el modal del carrito
-        elements.cartModal.classList.remove('open');
-        
-        // Vaciar el carrito después de enviar el pedido
-        cart = [];
-        updateCart();
-        
-        // Mostrar notificación de éxito
-        showNotification('📤 Pedido enviado por WhatsApp. Te contactaremos pronto.', 'success');
-        
-        // Abrir WhatsApp con el mensaje
-        setTimeout(() => {
-            window.open(`https://wa.me/593989476071?text=${encodedMessage}`, '_blank');
-        }, 500);
-    }
-    
-    // Actualizar enlace de WhatsApp con el contenido del carrito
-    function updateWhatsAppLink() {
-        if (cart.length === 0) {
-            // Si el carrito está vacío, usar mensaje predeterminado
-            elements.whatsappButton.href = `https://wa.me/593989476071?text=${encodeURIComponent("Hola, estoy interesado en los parches Quantum. ¿Podrían darme más información?")}`;
-            return;
-        }
-        
-        let message = "Hola, estoy interesado en los siguientes productos Quantum:\n\n";
-        
-        cart.forEach(item => {
-            message += `• ${item.name} x${item.quantity}\n`;
-        });
-        
-        const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-        message += `\n💰 Total aproximado: $${totalPrice.toFixed(2)}\n\n`;
-        message += "Me gustaría más información sobre estos productos.";
-        
-        const encodedMessage = encodeURIComponent(message);
-        elements.whatsappButton.href = `https://wa.me/593989476071?text=${encodedMessage}`;
-    }
-    
-    // ==============================================
-    // FUNCIONES DE NOTIFICACIONES Y MENÚ
-    // ==============================================
-    
-    // Mostrar notificación
-    function showNotification(message, type = 'info') {
-        // Colores según el tipo
-        const colors = {
-            success: '#00b894',
-            error: '#ff5e7d',
-            warning: '#ffa502',
-            info: '#6a11cb'
-        };
-        
-        const color = colors[type] || colors.info;
-        
-        // Crear elemento de notificación
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: ${color};
-            color: white;
-            padding: 12px 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            z-index: 1002;
-            transform: translateX(150%);
-            transition: transform 0.3s ease;
-            font-size: 0.9rem;
-            max-width: 300px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: slideIn 0.3s ease forwards;
-        `;
-        
-        // Icono según tipo
-        const icons = {
-            success: 'fa-check-circle',
-            error: 'fa-exclamation-circle',
-            warning: 'fa-exclamation-triangle',
-            info: 'fa-info-circle'
-        };
-        
-        const icon = icons[type] || icons.info;
-        
-        notification.innerHTML = `
-            <i class="fas ${icon}"></i>
-            <span>${message}</span>
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Mostrar notificación con animación
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 10);
-        
-        // Ocultar y eliminar notificación después de 3 segundos
-        setTimeout(() => {
-            notification.style.transform = 'translateX(150%)';
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    document.body.removeChild(notification);
-                }
-            }, 300);
-        }, 3000);
-    }
-    
-    // ==============================================
-    // VALIDACIÓN DE FORMULARIO DE CONTACTO
-    // ==============================================
-    
-    function setupContactForm() {
-        if (!elements.contactForm) return;
-        
-        elements.contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
+        // Actualizar carrito
+        function updateCart() {
+            // Guardar en localStorage
+            localStorage.setItem('quantumCart', JSON.stringify(cart));
             
-            // Limpiar mensajes anteriores
-            clearFormMessages();
+            // Actualizar contador del carrito
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartFloatCount.textContent = totalItems;
             
-            // Validar formulario
-            const validation = validateContactForm();
+            // Agregar o remover clase de pulso si hay productos
+            if (totalItems > 0) {
+                cartFloat.classList.add('has-items');
+            } else {
+                cartFloat.classList.remove('has-items');
+            }
             
-            if (!validation.isValid) {
-                // Mostrar errores
-                validation.errors.forEach(error => {
-                    showFormError(error.field, error.message);
-                });
+            // Mostrar/ocultar mensaje de carrito vacío
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+            } else {
+                emptyCartMessage.style.display = 'none';
+            }
+            
+            // Actualizar items del carrito en el modal
+            renderCartItems();
+            
+            // Actualizar total
+            const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+            
+            // Actualizar enlace de WhatsApp
+            updateWhatsAppLink();
+        }
+        
+        // Renderizar items del carrito
+        function renderCartItems() {
+            cartItems.innerHTML = '';
+            
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
                 
-                // Mostrar mensaje general de error
-                showFormMessage('❌ Por favor corrige los errores en el formulario.', 'error');
+                cartItem.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <div class="cart-item-price">$${item.price.toFixed(2)} c/u</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                        </div>
+                        <button class="remove-item" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            // Agregar event listeners a los controles de cantidad
+            document.querySelectorAll('.decrease').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    updateQuantity(productId, -1);
+                });
+            });
+            
+            document.querySelectorAll('.increase').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    updateQuantity(productId, 1);
+                });
+            });
+            
+            // Agregar event listeners a los botones de eliminar
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    removeFromCart(productId);
+                });
+            });
+        }
+        
+        // Actualizar cantidad de un producto
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            
+            if (item) {
+                item.quantity += change;
+                
+                // Eliminar si la cantidad es 0 o menos
+                if (item.quantity <= 0) {
+                    cart = cart.filter(item => item.id !== productId);
+                }
+                
+                updateCart();
+            }
+        }
+        
+        // Eliminar producto del carrito
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+        
+        // Vaciar carrito
+        function clearCart() {
+            cart = [];
+            updateCart();
+            showNotification('Carrito vaciado');
+        }
+        
+        // Completar pedido por WhatsApp - CON REINICIO DE CARRITO
+        function completeOrder() {
+            if (cart.length === 0) {
+                showNotification('Agrega productos al carrito primero');
                 return;
             }
             
-            // Si hay advertencias, mostrar pero permitir envío
-            if (validation.warnings.length > 0) {
-                validation.warnings.forEach(warning => {
-                    console.warn(`Advertencia: ${warning.field} - ${warning.message}`);
-                });
+            // Guardar temporalmente el contenido del carrito para el mensaje
+            const cartCopy = [...cart];
+            
+            // Crear mensaje para WhatsApp
+            let message = "¡Hola! Estoy interesado en comprar los siguientes productos Quantum:\n\n";
+            
+            cartCopy.forEach(item => {
+                message += `• ${item.name} x${item.quantity}: $${(item.price * item.quantity).toFixed(2)}\n`;
+            });
+            
+            const totalPrice = cartCopy.reduce((total, item) => total + (item.price * item.quantity), 0);
+            message += `\n💰 *Total: $${totalPrice.toFixed(2)}*\n\n`;
+            message += "Por favor, necesito información para completar mi pedido:\n";
+            message += "1. Métodos de pago disponibles\n";
+            message += "2. Tiempos de envío\n";
+            message += "3. Costos de envío\n\n";
+            message += "¡Gracias!";
+            
+            // Codificar mensaje para URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Cerrar el modal del carrito
+            cartModal.classList.remove('open');
+            
+            // VACIAR EL CARRITO DESPUÉS DE ENVIAR EL PEDIDO
+            cart = [];
+            updateCart();
+            
+            // Mostrar notificación de éxito
+            showNotification('¡Pedido enviado por WhatsApp! El carrito ha sido vaciado.');
+            
+            // Abrir WhatsApp con el mensaje (después de vaciar el carrito)
+            setTimeout(() => {
+                window.open(`https://wa.me/593989476071?text=${encodedMessage}`, '_blank');
+            }, 500);
+        }
+        
+        // Mostrar notificación
+        function showNotification(message) {
+            // Crear elemento de notificación
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: var(--success);
+                color: white;
+                padding: 12px 20px;
+                border-radius: 10px;
+                box-shadow: var(--shadow);
+                z-index: 1002;
+                transform: translateX(150%);
+                transition: transform 0.3s ease;
+                font-size: 0.9rem;
+                max-width: 300px;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Mostrar notificación
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            // Ocultar y eliminar notificación después de 3 segundos
+            setTimeout(() => {
+                notification.style.transform = 'translateX(150%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Actualizar enlace de WhatsApp con el contenido del carrito
+        function updateWhatsAppLink() {
+            if (cart.length === 0) {
+                // Si el carrito está vacío, usar mensaje predeterminado
+                whatsappButton.href = `https://wa.me/593989476071?text=${encodeURIComponent("Hola, estoy interesado en los parches Quantum. ¿Podrían darme más información?")}`;
+                return;
             }
             
-            // Enviar formulario
-            await submitContactForm();
-        });
+            let message = "Hola, estoy interesado en los siguientes productos Quantum:\n\n";
+            
+            cart.forEach(item => {
+                message += `• ${item.name} x${item.quantity}\n`;
+            });
+            
+            const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            message += `\n💰 Total aproximado: $${totalPrice.toFixed(2)}\n\n`;
+            message += "Me gustaría más información sobre estos productos.";
+            
+            const encodedMessage = encodeURIComponent(message);
+            whatsappButton.href = `https://wa.me/593989476071?text=${encodedMessage}`;
+        }
         
-        // Validación en tiempo real
-        setupRealTimeValidation();
-    }
-    
-    // Validar formulario de contacto
-    function validateContactForm() {
-        const errors = [];
-        const warnings = [];
+        // URL de tu Google Apps Script (CAMBIA ESTO)
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxo2_S3Rr6SyE4i-r_w0jalPGpeDGcS6HbdLK9dfgl6kLmFql8LyVS8eece8N8b20Q_/exec';
+
+// Validación del formulario de contacto CON GOOGLE SHEETS
+function setupContactForm() {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Validación básica
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value.trim();
+        
+        // Limpiar mensajes anteriores
+        formMessage.className = 'form-message';
+        formMessage.textContent = '';
+        
+        let isValid = true;
         
         // Validar nombre
-        const name = elements.nameInput.value.trim();
-        if (!name) {
-            errors.push({ field: 'name', message: 'El nombre es requerido' });
+        if (name === '') {
+            showFormError('name', 'Por favor ingresa tu nombre');
+            isValid = false;
         } else if (name.length < 2) {
-            errors.push({ field: 'name', message: 'El nombre debe tener al menos 2 caracteres' });
-        } else if (name.length > 100) {
-            warnings.push({ field: 'name', message: 'El nombre es muy largo' });
+            showFormError('name', 'El nombre debe tener al menos 2 caracteres');
+            isValid = false;
+        } else {
+            showFormSuccess('name');
         }
         
         // Validar email
-        const email = elements.emailInput.value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
-        if (!email) {
-            errors.push({ field: 'email', message: 'El email es requerido' });
+        if (email === '') {
+            showFormError('email', 'Por favor ingresa tu correo electrónico');
+            isValid = false;
         } else if (!emailRegex.test(email)) {
-            errors.push({ field: 'email', message: 'Ingresa un email válido (ejemplo@dominio.com)' });
-        }
-        
-        // Validar teléfono (opcional)
-        const phone = elements.phoneInput.value.trim();
-        if (phone) {
-            const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
-            const cleanPhone = phone.replace(/\s/g, '');
-            if (!phoneRegex.test(cleanPhone)) {
-                warnings.push({ field: 'phone', message: 'El teléfono puede no ser válido' });
-            }
+            showFormError('email', 'Por favor ingresa un correo electrónico válido');
+            isValid = false;
+        } else {
+            showFormSuccess('email');
         }
         
         // Validar mensaje
-        const message = elements.messageTextarea.value.trim();
-        if (!message) {
-            errors.push({ field: 'message', message: 'El mensaje es requerido' });
+        if (message === '') {
+            showFormError('message', 'Por favor escribe tu mensaje');
+            isValid = false;
         } else if (message.length < 10) {
-            errors.push({ field: 'message', message: 'El mensaje debe tener al menos 10 caracteres' });
-        } else if (message.length > 2000) {
-            warnings.push({ field: 'message', message: 'El mensaje es muy largo' });
+            showFormError('message', 'El mensaje debe tener al menos 10 caracteres');
+            isValid = false;
+        } else {
+            showFormSuccess('message');
         }
         
-        return {
-            isValid: errors.length === 0,
-            errors: errors,
-            warnings: warnings,
-            hasWarnings: warnings.length > 0,
-            data: {
-                name: name,
-                email: email,
-                phone: phone,
-                subject: elements.subjectSelect.value,
-                message: message
-            }
-        };
-    }
-    
-    // Enviar formulario a Google Sheets
-    async function submitContactForm() {
-        // Deshabilitar botón y mostrar indicador de carga
-        const submitBtn = elements.contactForm.querySelector('.submit-btn');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-        submitBtn.disabled = true;
-        
-        try {
-            // Obtener IP del usuario
-            let ip = '';
+        if (isValid) {
+            // Deshabilitar botón durante el envío
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            
             try {
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipResponse.json();
-                ip = ipData.ip;
-            } catch (ipError) {
-                console.log('No se pudo obtener la IP');
-                ip = 'No disponible';
-            }
-            
-            // Obtener datos del formulario
-            const formData = validateContactForm().data;
-            
-            // Agregar datos adicionales
-            const fullData = {
-                ...formData,
-                ip: ip,
-                timestamp: new Date().toISOString(),
-                userAgent: navigator.userAgent,
-                pageUrl: window.location.href,
-                referrer: document.referrer || 'Directo'
-            };
-            
-            console.log('📤 Enviando datos al servidor:', fullData);
-            
-            // Enviar a Google Apps Script
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors', // Importante para Google Apps Script
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(fullData)
-            });
-            
-            // Con 'no-cors' no podemos leer la respuesta, pero asumimos éxito si no hay error de red
-            // Esperar un momento para dar tiempo al procesamiento
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Mostrar mensaje de éxito
-            showFormMessage(
-                `✅ ¡Mensaje enviado con éxito!<br>
-                Gracias <strong>${formData.name}</strong>, tu mensaje ha sido recibido.<br>
-                Nos pondremos en contacto contigo en menos de 24 horas.<br>
-                <small>Recibirás una confirmación en <strong>${formData.email}</strong></small>`,
-                'success'
-            );
-            
-            // Resetear formulario después de 5 segundos
-            setTimeout(() => {
-                elements.contactForm.reset();
-                clearFormMessages();
-                
-                // Ocultar mensaje después de 8 segundos
-                setTimeout(() => {
-                    elements.formMessage.className = 'form-message';
-                    elements.formMessage.textContent = '';
-                }, 8000);
-            }, 5000);
-            
-            console.log('✅ Formulario enviado exitosamente');
-            
-        } catch (error) {
-            console.error('❌ Error al enviar formulario:', error);
-            
-            // Mostrar mensaje de error
-            showFormMessage(
-                `❌ Error al enviar el formulario<br>
-                <small>Por favor:<br>
-                1. Revisa tu conexión a internet<br>
-                2. Intenta nuevamente en unos momentos<br>
-                3. O contáctanos directamente por WhatsApp</small>`,
-                'error'
-            );
-            
-        } finally {
-            // Restaurar botón
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        }
-    }
-    
-    // Configurar validación en tiempo real
-    function setupRealTimeValidation() {
-        // Validar nombre mientras escribe
-        elements.nameInput.addEventListener('blur', () => {
-            const name = elements.nameInput.value.trim();
-            if (name && name.length < 2) {
-                showFormError('name', 'El nombre debe tener al menos 2 caracteres');
-            } else if (name) {
-                showFormSuccess('name');
-            }
-        });
-        
-        // Validar email mientras escribe
-        elements.emailInput.addEventListener('blur', () => {
-            const email = elements.emailInput.value.trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if (email && !emailRegex.test(email)) {
-                showFormError('email', 'Ingresa un email válido (ejemplo@dominio.com)');
-            } else if (email) {
-                showFormSuccess('email');
-            }
-        });
-        
-        // Validar mensaje mientras escribe
-        elements.messageTextarea.addEventListener('blur', () => {
-            const message = elements.messageTextarea.value.trim();
-            if (message && message.length < 10) {
-                showFormError('message', 'El mensaje debe tener al menos 10 caracteres');
-            } else if (message) {
-                showFormSuccess('message');
-            }
-        });
-        
-        // Limpiar errores al empezar a escribir
-        const inputs = [elements.nameInput, elements.emailInput, elements.messageTextarea];
-        inputs.forEach(input => {
-            input.addEventListener('input', () => {
-                const formGroup = input.closest('.form-group');
-                if (formGroup.classList.contains('error')) {
-                    formGroup.classList.remove('error');
-                    const errorMsg = formGroup.querySelector('.error-message');
-                    if (errorMsg) errorMsg.remove();
+                // Obtener IP del usuario
+                let ip = '';
+                try {
+                    const ipResponse = await fetch('https://api.ipify.org?format=json');
+                    const ipData = await ipResponse.json();
+                    ip = ipData.ip;
+                } catch (ipError) {
+                    console.log('No se pudo obtener la IP');
                 }
-            });
-        });
-    }
+                
+                // Preparar datos para enviar
+                const formData = {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    subject: subject,
+                    message: message,
+                    ip: ip,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Enviar datos a Google Apps Script
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Importante para Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                // Nota: Con 'no-cors' no podemos leer la respuesta, pero sabemos que se envió
+                
+                // Mostrar mensaje de éxito
+                formMessage.className = 'form-message success';
+                formMessage.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <strong>¡Mensaje enviado con éxito!</strong><br>
+                    Gracias ${name}, tu mensaje ha sido enviado. Nos pondremos en contacto contigo en menos de 24 horas.
+                    <br><small><em>Los datos se han guardado en nuestra base de datos.</em></small>
+                `;
+                
+                // Desplazar hacia el mensaje de éxito
+                formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Resetear formulario después de 3 segundos
+                setTimeout(() => {
+                    contactForm.reset();
+                    formMessage.className = 'form-message';
+                    formMessage.textContent = '';
+                }, 5000);
+                
+            } catch (error) {
+                // En caso de error de red
+                formMessage.className = 'form-message error';
+                formMessage.innerHTML = `
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong>Error de conexión</strong><br>
+                    No se pudo enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente por WhatsApp.
+                `;
+                
+                // Desplazar hacia el mensaje de error
+                formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+            } finally {
+                // Restaurar botón
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        } else {
+            formMessage.className = 'form-message error';
+            formMessage.innerHTML = `
+                <i class="fas fa-exclamation-circle"></i>
+                Por favor corrige los errores en el formulario antes de enviar.
+            `;
+            
+            // Desplazar hacia el mensaje de error
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    });
     
-    // Mostrar error en campo específico
     function showFormError(fieldId, message) {
         const field = document.getElementById(fieldId);
         const formGroup = field.closest('.form-group');
-        formGroup.classList.add('error');
+        formGroup.className = 'form-group error';
         
         // Mostrar mensaje de error si no existe
         let errorMsg = formGroup.querySelector('.error-message');
         if (!errorMsg) {
             errorMsg = document.createElement('div');
             errorMsg.className = 'error-message';
-            errorMsg.style.cssText = `
-                color: var(--accent);
-                font-size: 0.8rem;
-                margin-top: 5px;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-            `;
-            errorMsg.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+            errorMsg.style.color = 'var(--accent)';
+            errorMsg.style.fontSize = '0.8rem';
+            errorMsg.style.marginTop = '5px';
             formGroup.appendChild(errorMsg);
-        } else {
-            errorMsg.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
         }
+        errorMsg.textContent = message;
     }
     
-    // Mostrar éxito en campo específico
     function showFormSuccess(fieldId) {
         const field = document.getElementById(fieldId);
         const formGroup = field.closest('.form-group');
-        formGroup.classList.add('success');
+        formGroup.className = 'form-group success';
         
         // Eliminar mensaje de error si existe
         const errorMsg = formGroup.querySelector('.error-message');
@@ -2060,210 +2354,109 @@
             errorMsg.remove();
         }
     }
-    
-    // Mostrar mensaje general del formulario
-    function showFormMessage(message, type = 'info') {
-        elements.formMessage.className = `form-message ${type}`;
-        elements.formMessage.innerHTML = message;
-        elements.formMessage.style.display = 'block';
+}
         
-        // Desplazar hacia el mensaje
-        elements.formMessage.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center' 
-        });
-    }
-    
-    // Limpiar todos los mensajes del formulario
-    function clearFormMessages() {
-        // Limpiar mensaje general
-        elements.formMessage.className = 'form-message';
-        elements.formMessage.textContent = '';
-        
-        // Limpiar errores de campos
-        document.querySelectorAll('.form-group').forEach(group => {
-            group.classList.remove('error', 'success');
-            const errorMsg = group.querySelector('.error-message');
-            if (errorMsg) errorMsg.remove();
-        });
-    }
-    
-    // ==============================================
-    // FUNCIONES DE MENÚ Y EVENTOS
-    // ==============================================
-    
-    function setupEventListeners() {
-        // Event listener para el carrito flotante
-        elements.cartFloat.addEventListener('click', () => {
-            elements.cartModal.classList.add('open');
-        });
-        
-        // Cerrar carrito
-        elements.closeCart.addEventListener('click', () => {
-            elements.cartModal.classList.remove('open');
-        });
-        
-        // Cerrar carrito al hacer clic fuera
-        elements.cartModal.addEventListener('click', (e) => {
-            if (e.target === elements.cartModal) {
-                elements.cartModal.classList.remove('open');
-            }
-        });
-        
-        // Botones de carrito
-        elements.checkoutBtn.addEventListener('click', completeOrder);
-        elements.clearCartBtn.addEventListener('click', clearCart);
-        
-        // Menú móvil
-        elements.mobileMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            elements.mainNav.classList.toggle('open');
+        // Crear partículas decorativas para el hero
+        function createParticles() {
+            if (!heroParticles) return;
             
-            // Cambiar icono del botón
-            const icon = elements.mobileMenuBtn.querySelector('i');
-            if (elements.mainNav.classList.contains('open')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-        
-        // Cerrar menú móvil al hacer clic en un enlace
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                elements.mainNav.classList.remove('open');
-                const icon = elements.mobileMenuBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
-        });
-        
-        // Cerrar menú móvil al hacer clic fuera
-        document.addEventListener('click', (e) => {
-            if (elements.mainNav.classList.contains('open') && 
-                !elements.mainNav.contains(e.target) && 
-                e.target !== elements.mobileMenuBtn) {
-                elements.mainNav.classList.remove('open');
-                const icon = elements.mobileMenuBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-        
-        // Efecto de hover para el carrito flotante
-        elements.cartFloat.addEventListener('mouseenter', () => {
-            elements.cartFloat.style.transform = 'scale(1.1) translateY(-5px)';
-        });
-        
-        elements.cartFloat.addEventListener('mouseleave', () => {
-            elements.cartFloat.style.transform = 'scale(1) translateY(0)';
-        });
-        
-        // Smooth scroll para enlaces internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '#') return;
+            const particleCount = 20;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
                 
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                // Tamaño aleatorio entre 2px y 8px
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posición aleatoria
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Animación
+                const duration = Math.random() * 10 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                heroParticles.appendChild(particle);
+            }
+        }
+        
+        // Inicializar
+        function init() {
+            displayProducts();
+            updateCart();
+            setupContactForm();
+            createParticles();
+            
+            // Event listener para el carrito flotante
+            cartFloat.addEventListener('click', () => {
+                cartModal.classList.add('open');
+            });
+            
+            closeCart.addEventListener('click', () => {
+                cartModal.classList.remove('open');
+            });
+            
+            cartModal.addEventListener('click', (e) => {
+                if (e.target === cartModal) {
+                    cartModal.classList.remove('open');
                 }
             });
-        });
-    }
-    
-    // ==============================================
-    // INICIALIZACIÓN
-    // ==============================================
-    
-    function init() {
-        console.log('🚀 Inicializando Quantum Parches...');
-        
-        // Inicializar componentes
-        displayProducts();
-        updateCart();
-        setupContactForm();
-        setupEventListeners();
-        
-        // Verificar conexión con Google Script
-        checkGoogleScriptConnection();
-        
-        console.log('✅ Quantum Parches inicializado correctamente');
-    }
-    
-    // Verificar conexión con Google Script
-    async function checkGoogleScriptConnection() {
-        try {
-            const response = await fetch(`${GOOGLE_SCRIPT_URL}?test=1`);
-            const data = await response.json();
-            console.log('🌐 Conexión con Google Script: ✅', data.status);
-        } catch (error) {
-            console.warn('⚠️ No se pudo verificar la conexión con Google Script:', error.message);
-        }
-    }
-    
-    // ==============================================
-    // EJECUCIÓN AL CARGAR LA PÁGINA
-    // ==============================================
-    
-    document.addEventListener('DOMContentLoaded', init);
-    
-    // Agregar estilos CSS adicionales para validación
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideIn {
-            from { transform: translateX(150%); }
-            to { transform: translateX(0); }
-        }
-        
-        @keyframes slideOut {
-            from { transform: translateX(0); }
-            to { transform: translateX(150%); }
-        }
-        
-        .error-message {
-            color: var(--accent) !important;
-            font-size: 0.8rem !important;
-            margin-top: 5px !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 5px !important;
-            animation: fadeIn 0.3s ease;
+            
+            checkoutBtn.addEventListener('click', completeOrder);
+            clearCartBtn.addEventListener('click', clearCart);
+            
+            // Menú móvil
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mainNav.classList.toggle('open');
+                // Cambiar icono del botón
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mainNav.classList.contains('open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Cerrar menú móvil al hacer clic en un enlace
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('open');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+            
+            // Cerrar menú móvil al hacer clic fuera
+            document.addEventListener('click', (e) => {
+                if (mainNav.classList.contains('open') && 
+                    !mainNav.contains(e.target) && 
+                    e.target !== mobileMenuBtn) {
+                    mainNav.classList.remove('open');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Efecto de hover para el carrito flotante
+            cartFloat.addEventListener('mouseenter', () => {
+                cartFloat.style.transform = 'scale(1.1) translateY(-5px)';
+            });
+            
+            cartFloat.addEventListener('mouseleave', () => {
+                cartFloat.style.transform = 'scale(1) translateY(0)';
+            });
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .form-group.error .form-input,
-        .form-group.error .form-textarea,
-        .form-group.error select {
-            border-color: var(--accent) !important;
-            background-color: rgba(255, 94, 125, 0.05) !important;
-        }
-        
-        .form-group.success .form-input,
-        .form-group.success .form-textarea,
-        .form-group.success select {
-            border-color: var(--success) !important;
-            background-color: rgba(0, 184, 148, 0.05) !important;
-        }
-        
-        .form-message.info {
-            background-color: rgba(106, 17, 203, 0.1) !important;
-            color: var(--primary) !important;
-            border-left: 4px solid var(--primary) !important;
-        }
-    `;
-    document.head.appendChild(style);
-</script>
+        // Ejecutar inicialización cuando el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
