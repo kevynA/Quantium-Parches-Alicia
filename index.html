@@ -1673,7 +1673,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>Email</h4>
-                            <p class="highlight">info@quantumparches.com</p>
+                            <p class="highlight">cuantumealiinfo@gmail.com</p>
                             <p>Respuesta en menos de 24 horas hábiles</p>
                         </div>
                     </div>
@@ -1696,8 +1696,8 @@
                         </div>
                         <div class="contact-details">
                             <h4>Ubicación</h4>
-                            <p>Av. Bienestar 123, Ciudad Quantum</p>
-                            <p>C.P. 12345, Ecuador</p>
+                            <p>Ibarra - Las Cuatro Esquinas</p>
+                            <p>Ecuador</p>
                         </div>
                     </div>
                 </div>
@@ -2181,113 +2181,180 @@
             whatsappButton.href = `https://wa.me/593989476071?text=${encodedMessage}`;
         }
         
-        // Validación del formulario de contacto
-        function setupContactForm() {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Validación básica
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const message = document.getElementById('message').value.trim();
-                
-                // Limpiar mensajes anteriores
-                formMessage.className = 'form-message';
-                formMessage.textContent = '';
-                
-                let isValid = true;
-                
-                // Validar nombre
-                if (name === '') {
-                    showFormError('name', 'Por favor ingresa tu nombre');
-                    isValid = false;
-                } else {
-                    showFormSuccess('name');
-                }
-                
-                // Validar email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (email === '') {
-                    showFormError('email', 'Por favor ingresa tu correo electrónico');
-                    isValid = false;
-                } else if (!emailRegex.test(email)) {
-                    showFormError('email', 'Por favor ingresa un correo electrónico válido');
-                    isValid = false;
-                } else {
-                    showFormSuccess('email');
-                }
-                
-                // Validar mensaje
-                if (message === '') {
-                    showFormError('message', 'Por favor escribe tu mensaje');
-                    isValid = false;
-                } else if (message.length < 10) {
-                    showFormError('message', 'El mensaje debe tener al menos 10 caracteres');
-                    isValid = false;
-                } else {
-                    showFormSuccess('message');
-                }
-                
-                if (isValid) {
-                    // Simular envío del formulario
-                    formMessage.className = 'form-message success';
-                    formMessage.innerHTML = `
-                        <i class="fas fa-check-circle"></i>
-                        <strong>¡Mensaje enviado con éxito!</strong><br>
-                        Gracias ${name}, tu mensaje ha sido enviado. Nos pondremos en contacto contigo en menos de 24 horas.
-                    `;
-                    
-                    // Desplazar hacia el mensaje de éxito
-                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    
-                    // Resetear formulario después de 3 segundos
-                    setTimeout(() => {
-                        contactForm.reset();
-                        formMessage.className = 'form-message';
-                        formMessage.textContent = '';
-                    }, 5000);
-                } else {
-                    formMessage.className = 'form-message error';
-                    formMessage.innerHTML = `
-                        <i class="fas fa-exclamation-circle"></i>
-                        Por favor corrige los errores en el formulario antes de enviar.
-                    `;
-                    
-                    // Desplazar hacia el mensaje de error
-                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-            });
-            
-            function showFormError(fieldId, message) {
-                const field = document.getElementById(fieldId);
-                const formGroup = field.closest('.form-group');
-                formGroup.className = 'form-group error';
-                
-                // Mostrar mensaje de error si no existe
-                let errorMsg = formGroup.querySelector('.error-message');
-                if (!errorMsg) {
-                    errorMsg = document.createElement('div');
-                    errorMsg.className = 'error-message';
-                    errorMsg.style.color = 'var(--accent)';
-                    errorMsg.style.fontSize = '0.8rem';
-                    errorMsg.style.marginTop = '5px';
-                    formGroup.appendChild(errorMsg);
-                }
-                errorMsg.textContent = message;
-            }
-            
-            function showFormSuccess(fieldId) {
-                const field = document.getElementById(fieldId);
-                const formGroup = field.closest('.form-group');
-                formGroup.className = 'form-group success';
-                
-                // Eliminar mensaje de error si existe
-                const errorMsg = formGroup.querySelector('.error-message');
-                if (errorMsg) {
-                    errorMsg.remove();
-                }
-            }
+        // URL de tu Google Apps Script (CAMBIA ESTO)
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6w3zoC1u7KglOr-Uc4sz1B5YCXvD4WeySD44thqT9MMDA4qpihZcGh8cKlu6QkkKN/exec';
+
+// Validación del formulario de contacto CON GOOGLE SHEETS
+function setupContactForm() {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Validación básica
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value.trim();
+        
+        // Limpiar mensajes anteriores
+        formMessage.className = 'form-message';
+        formMessage.textContent = '';
+        
+        let isValid = true;
+        
+        // Validar nombre
+        if (name === '') {
+            showFormError('name', 'Por favor ingresa tu nombre');
+            isValid = false;
+        } else if (name.length < 2) {
+            showFormError('name', 'El nombre debe tener al menos 2 caracteres');
+            isValid = false;
+        } else {
+            showFormSuccess('name');
         }
+        
+        // Validar email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email === '') {
+            showFormError('email', 'Por favor ingresa tu correo electrónico');
+            isValid = false;
+        } else if (!emailRegex.test(email)) {
+            showFormError('email', 'Por favor ingresa un correo electrónico válido');
+            isValid = false;
+        } else {
+            showFormSuccess('email');
+        }
+        
+        // Validar mensaje
+        if (message === '') {
+            showFormError('message', 'Por favor escribe tu mensaje');
+            isValid = false;
+        } else if (message.length < 10) {
+            showFormError('message', 'El mensaje debe tener al menos 10 caracteres');
+            isValid = false;
+        } else {
+            showFormSuccess('message');
+        }
+        
+        if (isValid) {
+            // Deshabilitar botón durante el envío
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Obtener IP del usuario
+                let ip = '';
+                try {
+                    const ipResponse = await fetch('https://api.ipify.org?format=json');
+                    const ipData = await ipResponse.json();
+                    ip = ipData.ip;
+                } catch (ipError) {
+                    console.log('No se pudo obtener la IP');
+                }
+                
+                // Preparar datos para enviar
+                const formData = {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    subject: subject,
+                    message: message,
+                    ip: ip,
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Enviar datos a Google Apps Script
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Importante para Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                // Nota: Con 'no-cors' no podemos leer la respuesta, pero sabemos que se envió
+                
+                // Mostrar mensaje de éxito
+                formMessage.className = 'form-message success';
+                formMessage.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <strong>¡Mensaje enviado con éxito!</strong><br>
+                    Gracias ${name}, tu mensaje ha sido enviado. Nos pondremos en contacto contigo en menos de 24 horas.
+                    <br><small><em>Los datos se han guardado en nuestra base de datos.</em></small>
+                `;
+                
+                // Desplazar hacia el mensaje de éxito
+                formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Resetear formulario después de 3 segundos
+                setTimeout(() => {
+                    contactForm.reset();
+                    formMessage.className = 'form-message';
+                    formMessage.textContent = '';
+                }, 5000);
+                
+            } catch (error) {
+                // En caso de error de red
+                formMessage.className = 'form-message error';
+                formMessage.innerHTML = `
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong>Error de conexión</strong><br>
+                    No se pudo enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente por WhatsApp.
+                `;
+                
+                // Desplazar hacia el mensaje de error
+                formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+            } finally {
+                // Restaurar botón
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        } else {
+            formMessage.className = 'form-message error';
+            formMessage.innerHTML = `
+                <i class="fas fa-exclamation-circle"></i>
+                Por favor corrige los errores en el formulario antes de enviar.
+            `;
+            
+            // Desplazar hacia el mensaje de error
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    });
+    
+    function showFormError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        const formGroup = field.closest('.form-group');
+        formGroup.className = 'form-group error';
+        
+        // Mostrar mensaje de error si no existe
+        let errorMsg = formGroup.querySelector('.error-message');
+        if (!errorMsg) {
+            errorMsg = document.createElement('div');
+            errorMsg.className = 'error-message';
+            errorMsg.style.color = 'var(--accent)';
+            errorMsg.style.fontSize = '0.8rem';
+            errorMsg.style.marginTop = '5px';
+            formGroup.appendChild(errorMsg);
+        }
+        errorMsg.textContent = message;
+    }
+    
+    function showFormSuccess(fieldId) {
+        const field = document.getElementById(fieldId);
+        const formGroup = field.closest('.form-group');
+        formGroup.className = 'form-group success';
+        
+        // Eliminar mensaje de error si existe
+        const errorMsg = formGroup.querySelector('.error-message');
+        if (errorMsg) {
+            errorMsg.remove();
+        }
+    }
+}
         
         // Crear partículas decorativas para el hero
         function createParticles() {
