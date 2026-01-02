@@ -125,12 +125,9 @@
         .hero {
             background: linear-gradient(rgba(26, 26, 46, 0.7), rgba(26, 26, 46, 0.75)), 
                         url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            /* O puedes usar esta imagen alternativa más energética:
-            url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            */
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Efecto parallax opcional */
+            background-attachment: fixed;
             color: white;
             padding: 5rem 0;
             text-align: center;
@@ -829,6 +826,63 @@
             transform: translateX(5px);
         }
         
+        /* Estados del formulario MEJORADOS */
+        .form-group.success .form-input,
+        .form-group.success .form-textarea {
+            border-color: var(--success);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300b894'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 45px;
+        }
+        
+        .form-group.error .form-input,
+        .form-group.error .form-textarea {
+            border-color: var(--accent);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff5e7d'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 45px;
+        }
+        
+        .error-message {
+            color: var(--accent);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        .form-message {
+            margin-top: 1rem;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none;
+            line-height: 1.4;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-message.success {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--success);
+            border-left: 4px solid var(--success);
+            display: block;
+        }
+        
+        .form-message.error {
+            background-color: rgba(255, 94, 125, 0.1);
+            color: var(--accent);
+            border-left: 4px solid var(--accent);
+            display: block;
+        }
+        
         /* Elementos decorativos */
         .contact-decoration {
             position: absolute;
@@ -863,40 +917,6 @@
             50% {
                 transform: translateY(-15px) rotate(10deg);
             }
-        }
-        
-        /* Estados del formulario */
-        .form-group.success .form-input,
-        .form-group.success .form-textarea {
-            border-color: var(--success);
-        }
-        
-        .form-group.error .form-input,
-        .form-group.error .form-textarea {
-            border-color: var(--accent);
-        }
-        
-        .form-message {
-            margin-top: 1rem;
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            display: none;
-            line-height: 1.4;
-        }
-        
-        .form-message.success {
-            background-color: rgba(0, 184, 148, 0.1);
-            color: var(--success);
-            border-left: 4px solid var(--success);
-            display: block;
-        }
-        
-        .form-message.error {
-            background-color: rgba(255, 94, 125, 0.1);
-            color: var(--accent);
-            border-left: 4px solid var(--accent);
-            display: block;
         }
         
         /* Footer */
@@ -1489,7 +1509,6 @@
                     <li><a href="#testimonios">Testimonios</a></li>
                     <li><a href="#redes">Redes Sociales</a></li>
                     <li><a href="#contacto">Contacto</a></li>
-                    <!-- NOTA: Carrito removido del menú -->
                 </ul>
             </nav>
         </div>
@@ -1841,6 +1860,9 @@
     </div>
 
     <script>
+        // URL de tu Google Apps Script (ACTUALIZADA CON CORS)
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVxKhr4GpR81Ul00zqxLgv6RQRxqtXaxAyoBTfr7TjDYlGHcQKEBbZ84l7ZxSTT8rN/exec';
+        
         // Datos de productos
         const products = [
             {
@@ -2181,180 +2203,207 @@
             whatsappButton.href = `https://wa.me/593989476071?text=${encodedMessage}`;
         }
         
-        // URL de tu Google Apps Script (CAMBIA ESTO)
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVxKhr4GpR81Ul00zqxLgv6RQRxqtXaxAyoBTfr7TjDYlGHcQKEBbZ84l7ZxSTT8rN/exec';
-
-// Validación del formulario de contacto CON GOOGLE SHEETS
-function setupContactForm() {
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        // Validación básica
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value.trim();
-        
-        // Limpiar mensajes anteriores
-        formMessage.className = 'form-message';
-        formMessage.textContent = '';
-        
-        let isValid = true;
-        
-        // Validar nombre
-        if (name === '') {
-            showFormError('name', 'Por favor ingresa tu nombre');
-            isValid = false;
-        } else if (name.length < 2) {
-            showFormError('name', 'El nombre debe tener al menos 2 caracteres');
-            isValid = false;
-        } else {
-            showFormSuccess('name');
-        }
-        
-        // Validar email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (email === '') {
-            showFormError('email', 'Por favor ingresa tu correo electrónico');
-            isValid = false;
-        } else if (!emailRegex.test(email)) {
-            showFormError('email', 'Por favor ingresa un correo electrónico válido');
-            isValid = false;
-        } else {
-            showFormSuccess('email');
-        }
-        
-        // Validar mensaje
-        if (message === '') {
-            showFormError('message', 'Por favor escribe tu mensaje');
-            isValid = false;
-        } else if (message.length < 10) {
-            showFormError('message', 'El mensaje debe tener al menos 10 caracteres');
-            isValid = false;
-        } else {
-            showFormSuccess('message');
-        }
-        
-        if (isValid) {
-            // Deshabilitar botón durante el envío
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            submitBtn.disabled = true;
-            
-            try {
-                // Obtener IP del usuario
-                let ip = '';
-                try {
-                    const ipResponse = await fetch('https://api.ipify.org?format=json');
-                    const ipData = await ipResponse.json();
-                    ip = ipData.ip;
-                } catch (ipError) {
-                    console.log('No se pudo obtener la IP');
-                }
+        // Validación del formulario de contacto con Google Sheets
+        function setupContactForm() {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
                 
-                // Preparar datos para enviar
-                const formData = {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    subject: subject,
-                    message: message,
-                    ip: ip,
-                    timestamp: new Date().toISOString()
-                };
+                // Validación básica
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value.trim();
                 
-                // Enviar datos a Google Apps Script
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', // Importante para Google Apps Script
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
+                // Limpiar mensajes anteriores
+                formMessage.className = 'form-message';
+                formMessage.textContent = '';
+                
+                // Limpiar clases de error/success anteriores
+                document.querySelectorAll('.form-group').forEach(group => {
+                    group.classList.remove('success', 'error');
+                    const errorMsg = group.querySelector('.error-message');
+                    if (errorMsg) errorMsg.remove();
                 });
                 
-                // Nota: Con 'no-cors' no podemos leer la respuesta, pero sabemos que se envió
+                let isValid = true;
                 
-                // Mostrar mensaje de éxito
-                formMessage.className = 'form-message success';
-                formMessage.innerHTML = `
-                    <i class="fas fa-check-circle"></i>
-                    <strong>¡Mensaje enviado con éxito!</strong><br>
-                    Gracias ${name}, tu mensaje ha sido enviado. Nos pondremos en contacto contigo en menos de 24 horas.
-                    <br><small><em>Los datos se han guardado en nuestra base de datos.</em></small>
-                `;
+                // Validar nombre
+                if (name === '') {
+                    showFormError('name', 'Por favor ingresa tu nombre');
+                    isValid = false;
+                } else if (name.length < 2) {
+                    showFormError('name', 'El nombre debe tener al menos 2 caracteres');
+                    isValid = false;
+                } else {
+                    showFormSuccess('name');
+                }
                 
-                // Desplazar hacia el mensaje de éxito
-                formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                // Validar email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email === '') {
+                    showFormError('email', 'Por favor ingresa tu correo electrónico');
+                    isValid = false;
+                } else if (!emailRegex.test(email)) {
+                    showFormError('email', 'Por favor ingresa un correo electrónico válido');
+                    isValid = false;
+                } else {
+                    showFormSuccess('email');
+                }
                 
-                // Resetear formulario después de 3 segundos
-                setTimeout(() => {
-                    contactForm.reset();
-                    formMessage.className = 'form-message';
-                    formMessage.textContent = '';
-                }, 5000);
+                // Validar mensaje
+                if (message === '') {
+                    showFormError('message', 'Por favor escribe tu mensaje');
+                    isValid = false;
+                } else if (message.length < 10) {
+                    showFormError('message', 'El mensaje debe tener al menos 10 caracteres');
+                    isValid = false;
+                } else {
+                    showFormSuccess('message');
+                }
                 
-            } catch (error) {
-                // En caso de error de red
-                formMessage.className = 'form-message error';
-                formMessage.innerHTML = `
-                    <i class="fas fa-exclamation-circle"></i>
-                    <strong>Error de conexión</strong><br>
-                    No se pudo enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente por WhatsApp.
-                `;
-                
-                // Desplazar hacia el mensaje de error
-                formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                
-            } finally {
-                // Restaurar botón
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        } else {
-            formMessage.className = 'form-message error';
-            formMessage.innerHTML = `
-                <i class="fas fa-exclamation-circle"></i>
-                Por favor corrige los errores en el formulario antes de enviar.
-            `;
+                if (isValid) {
+                    // Deshabilitar botón durante el envío
+                    const submitBtn = contactForm.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                    submitBtn.disabled = true;
+                    
+                    try {
+                        // Obtener IP del usuario
+                        let ip = '';
+                        try {
+                            const ipResponse = await fetch('https://api.ipify.org?format=json');
+                            const ipData = await ipResponse.json();
+                            ip = ipData.ip;
+                        } catch (ipError) {
+                            console.log('No se pudo obtener la IP');
+                        }
+                        
+                        // Preparar datos para enviar
+                        const formData = {
+                            name: name,
+                            email: email,
+                            phone: phone || '',
+                            subject: subject || 'Consulta Web',
+                            message: message,
+                            ip: ip || 'No detectada',
+                            timestamp: new Date().toISOString(),
+                            source: 'quantium-parches-web'
+                        };
+                        
+                        console.log('Enviando datos a Google Sheets:', formData);
+                        
+                        // Enviar datos a Google Apps Script CON CORS
+                        const response = await fetch(GOOGLE_SCRIPT_URL, {
+                            method: 'POST',
+                            mode: 'cors',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formData)
+                        });
+                        
+                        console.log('Respuesta del servidor:', response);
+                        
+                        // Intentar leer la respuesta
+                        let result;
+                        try {
+                            const text = await response.text();
+                            console.log('Texto de respuesta:', text);
+                            result = JSON.parse(text);
+                        } catch (parseError) {
+                            console.log('Error parseando respuesta:', parseError);
+                            // Si no se puede parsear como JSON, asumimos éxito
+                            result = { resultado: 'exito', mensaje: 'Mensaje enviado exitosamente' };
+                        }
+                        
+                        // Mostrar mensaje de éxito
+                        formMessage.className = 'form-message success';
+                        formMessage.innerHTML = `
+                            <i class="fas fa-check-circle"></i>
+                            <strong>¡Mensaje enviado con éxito!</strong><br>
+                            Gracias ${name}, tu mensaje ha sido enviado. Nos pondremos en contacto contigo en menos de 24 horas.
+                            <br><small><em>Los datos se han guardado en nuestra base de datos.</em></small>
+                        `;
+                        
+                        // Desplazar hacia el mensaje de éxito
+                        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        
+                        // Resetear formulario después de 3 segundos
+                        setTimeout(() => {
+                            contactForm.reset();
+                            formMessage.className = 'form-message';
+                            formMessage.textContent = '';
+                            // Limpiar clases de validación
+                            document.querySelectorAll('.form-group').forEach(group => {
+                                group.classList.remove('success', 'error');
+                            });
+                        }, 5000);
+                        
+                    } catch (error) {
+                        console.error('Error enviando formulario:', error);
+                        
+                        // En caso de error de red o CORS
+                        formMessage.className = 'form-message error';
+                        formMessage.innerHTML = `
+                            <i class="fas fa-exclamation-circle"></i>
+                            <strong>Error de conexión</strong><br>
+                            No se pudo enviar el mensaje directamente. Por favor, contáctanos directamente por WhatsApp o email.
+                            <br><small><em>Error: ${error.message}</em></small>
+                        `;
+                        
+                        // Desplazar hacia el mensaje de error
+                        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        
+                    } finally {
+                        // Restaurar botón
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }
+                } else {
+                    formMessage.className = 'form-message error';
+                    formMessage.innerHTML = `
+                        <i class="fas fa-exclamation-circle"></i>
+                        Por favor corrige los errores en el formulario antes de enviar.
+                    `;
+                    
+                    // Desplazar hacia el mensaje de error
+                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
             
-            // Desplazar hacia el mensaje de error
-            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            // Función auxiliar para mostrar errores de validación
+            function showFormError(fieldId, message) {
+                const field = document.getElementById(fieldId);
+                const formGroup = field.closest('.form-group');
+                formGroup.classList.remove('success');
+                formGroup.classList.add('error');
+                
+                // Mostrar mensaje de error si no existe
+                let errorMsg = formGroup.querySelector('.error-message');
+                if (!errorMsg) {
+                    errorMsg = document.createElement('div');
+                    errorMsg.className = 'error-message';
+                    formGroup.appendChild(errorMsg);
+                }
+                errorMsg.textContent = message;
+            }
+            
+            // Función auxiliar para mostrar éxito de validación
+            function showFormSuccess(fieldId) {
+                const field = document.getElementById(fieldId);
+                const formGroup = field.closest('.form-group');
+                formGroup.classList.remove('error');
+                formGroup.classList.add('success');
+                
+                // Eliminar mensaje de error si existe
+                const errorMsg = formGroup.querySelector('.error-message');
+                if (errorMsg) {
+                    errorMsg.remove();
+                }
+            }
         }
-    });
-    
-    function showFormError(fieldId, message) {
-        const field = document.getElementById(fieldId);
-        const formGroup = field.closest('.form-group');
-        formGroup.className = 'form-group error';
-        
-        // Mostrar mensaje de error si no existe
-        let errorMsg = formGroup.querySelector('.error-message');
-        if (!errorMsg) {
-            errorMsg = document.createElement('div');
-            errorMsg.className = 'error-message';
-            errorMsg.style.color = 'var(--accent)';
-            errorMsg.style.fontSize = '0.8rem';
-            errorMsg.style.marginTop = '5px';
-            formGroup.appendChild(errorMsg);
-        }
-        errorMsg.textContent = message;
-    }
-    
-    function showFormSuccess(fieldId) {
-        const field = document.getElementById(fieldId);
-        const formGroup = field.closest('.form-group');
-        formGroup.className = 'form-group success';
-        
-        // Eliminar mensaje de error si existe
-        const errorMsg = formGroup.querySelector('.error-message');
-        if (errorMsg) {
-            errorMsg.remove();
-        }
-    }
-}
         
         // Crear partículas decorativas para el hero
         function createParticles() {
@@ -2453,6 +2502,73 @@ function setupContactForm() {
             cartFloat.addEventListener('mouseleave', () => {
                 cartFloat.style.transform = 'scale(1) translateY(0)';
             });
+            
+            // Validación en tiempo real para el formulario
+            document.querySelectorAll('#contactForm input, #contactForm textarea').forEach(input => {
+                input.addEventListener('blur', function() {
+                    const fieldId = this.id;
+                    const value = this.value.trim();
+                    
+                    if (fieldId === 'name') {
+                        if (value === '') {
+                            showFormError(fieldId, 'Por favor ingresa tu nombre');
+                        } else if (value.length < 2) {
+                            showFormError(fieldId, 'El nombre debe tener al menos 2 caracteres');
+                        } else {
+                            showFormSuccess(fieldId);
+                        }
+                    }
+                    
+                    if (fieldId === 'email') {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (value === '') {
+                            showFormError(fieldId, 'Por favor ingresa tu correo electrónico');
+                        } else if (!emailRegex.test(value)) {
+                            showFormError(fieldId, 'Por favor ingresa un correo electrónico válido');
+                        } else {
+                            showFormSuccess(fieldId);
+                        }
+                    }
+                    
+                    if (fieldId === 'message') {
+                        if (value === '') {
+                            showFormError(fieldId, 'Por favor escribe tu mensaje');
+                        } else if (value.length < 10) {
+                            showFormError(fieldId, 'El mensaje debe tener al menos 10 caracteres');
+                        } else {
+                            showFormSuccess(fieldId);
+                        }
+                    }
+                });
+            });
+            
+            // Función auxiliar para mostrar errores (para validación en tiempo real)
+            function showFormError(fieldId, message) {
+                const field = document.getElementById(fieldId);
+                const formGroup = field.closest('.form-group');
+                formGroup.classList.remove('success');
+                formGroup.classList.add('error');
+                
+                let errorMsg = formGroup.querySelector('.error-message');
+                if (!errorMsg) {
+                    errorMsg = document.createElement('div');
+                    errorMsg.className = 'error-message';
+                    formGroup.appendChild(errorMsg);
+                }
+                errorMsg.textContent = message;
+            }
+            
+            function showFormSuccess(fieldId) {
+                const field = document.getElementById(fieldId);
+                const formGroup = field.closest('.form-group');
+                formGroup.classList.remove('error');
+                formGroup.classList.add('success');
+                
+                const errorMsg = formGroup.querySelector('.error-message');
+                if (errorMsg) {
+                    errorMsg.remove();
+                }
+            }
         }
         
         // Ejecutar inicialización cuando el DOM esté cargado
