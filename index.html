@@ -51,7 +51,7 @@
             padding: 0 20px;
         }
         
-        /* Header - SIN CARRITO EN MENÚ */
+        /* Header */
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
@@ -121,7 +121,7 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
         
-        /* Hero Section - CON MÁS TRANSPARENCIA Y NUEVA IMAGEN */
+        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(26, 26, 46, 0.7), rgba(26, 26, 46, 0.75)), 
                         url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
@@ -160,24 +160,7 @@
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
         }
         
-        /* Efecto de partículas sutiles en el fondo */
-        .hero-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.3;
-        }
-        
-        .particle {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-        }
-        
-        /* CARRITO FLOTANTE (ÚNICA VERSIÓN) */
+        /* CARRITO FLOTANTE */
         .cart-float {
             position: fixed;
             bottom: 90px;
@@ -221,21 +204,14 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
         
-        /* Efecto de pulso para el carrito cuando hay productos */
         .cart-float.has-items {
             animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
-            0% {
-                box-shadow: 0 5px 20px rgba(106, 17, 203, 0.5);
-            }
-            50% {
-                box-shadow: 0 5px 25px rgba(106, 17, 203, 0.8);
-            }
-            100% {
-                box-shadow: 0 5px 20px rgba(106, 17, 203, 0.5);
-            }
+            0% { box-shadow: 0 5px 20px rgba(106, 17, 203, 0.5); }
+            50% { box-shadow: 0 5px 25px rgba(106, 17, 203, 0.8); }
+            100% { box-shadow: 0 5px 20px rgba(106, 17, 203, 0.5); }
         }
         
         .btn {
@@ -472,14 +448,6 @@
         
         .social-media .section-title:after {
             background: linear-gradient(to right, #ff5e7d, #ff8a00);
-        }
-        
-        .social-intro {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            font-size: 1.05rem;
-            color: rgba(255, 255, 255, 0.9);
-            padding: 0 10px;
         }
         
         .social-grid {
@@ -770,6 +738,34 @@
             resize: vertical;
         }
         
+        /* Estados del formulario MEJORADOS */
+        .form-group.has-error .form-input,
+        .form-group.has-error .form-textarea {
+            border-color: var(--accent);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff5e7d'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 45px;
+        }
+        
+        .form-group.has-success .form-input,
+        .form-group.has-success .form-textarea {
+            border-color: var(--success);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300b894'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 45px;
+        }
+        
+        .error-message {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
         /* Botón de Envío */
         .submit-btn {
             display: flex;
@@ -793,28 +789,14 @@
             margin-top: 1rem;
         }
         
-        .submit-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .submit-btn:hover {
+        .submit-btn:hover:not(:disabled) {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(106, 17, 203, 0.4);
         }
         
-        .submit-btn:hover:before {
-            left: 100%;
-        }
-        
-        .submit-btn:active {
-            transform: translateY(0);
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
         
         .submit-btn i {
@@ -822,36 +804,18 @@
             transition: var(--transition);
         }
         
-        .submit-btn:hover i {
-            transform: translateX(5px);
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
         }
         
-        /* Estados del formulario MEJORADOS */
-        .form-group.success .form-input,
-        .form-group.success .form-textarea {
-            border-color: var(--success);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300b894'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 20px;
-            padding-right: 45px;
-        }
-        
-        .form-group.error .form-input,
-        .form-group.error .form-textarea {
-            border-color: var(--accent);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff5e7d'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 20px;
-            padding-right: 45px;
-        }
-        
-        .error-message {
-            color: var(--accent);
-            font-size: 0.8rem;
-            margin-top: 5px;
-            display: block;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
         
         .form-message {
@@ -911,12 +875,8 @@
         }
         
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-15px) rotate(10deg);
-            }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
         }
         
         /* Footer */
@@ -1187,7 +1147,6 @@
                 flex-wrap: wrap;
             }
             
-            /* Menú móvil */
             .mobile-menu-btn {
                 display: block;
             }
@@ -1257,46 +1216,14 @@
                 font-size: 1.8rem;
             }
             
-            .section-title p {
-                font-size: 1rem;
-                padding: 0 10px;
-            }
-            
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 1.5rem;
-            }
-            
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .social-grid {
-                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
             
             .contact-container {
                 grid-template-columns: 1fr;
                 gap: 1.8rem;
-            }
-            
-            .footer-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-            
-            .footer-logo {
-                font-size: 1.4rem;
-            }
-            
-            .footer-links h4 {
-                font-size: 1.1rem;
-            }
-            
-            .footer-links a {
-                font-size: 0.9rem;
             }
             
             .whatsapp-button {
@@ -1314,25 +1241,6 @@
                 height: 60px;
                 font-size: 1.5rem;
             }
-            
-            .cart-content {
-                max-width: 100%;
-                padding: 1.5rem;
-            }
-            
-            .contact-info, .contact-form-container {
-                padding: 1.5rem;
-            }
-            
-            .contact-item {
-                gap: 12px;
-            }
-            
-            .contact-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 1.1rem;
-            }
         }
         
         @media (max-width: 480px) {
@@ -1344,61 +1252,9 @@
                 font-size: 1.9rem;
             }
             
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .btn {
-                padding: 12px 30px;
-                font-size: 1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.7rem;
-            }
-            
             .products-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
-            }
-            
-            .product-card {
-                max-width: 100%;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .footer-links {
-                margin-bottom: 1.5rem;
-            }
-            
-            .footer-links:last-child {
-                margin-bottom: 0;
-            }
-            
-            .submit-btn {
-                padding: 15px 20px;
-                font-size: 1rem;
-            }
-            
-            .form-input, .form-textarea {
-                padding: 12px 14px;
-                font-size: 0.95rem;
-            }
-            
-            .testimonial-text {
-                font-size: 0.95rem;
-            }
-            
-            .testimonial-author h4 {
-                font-size: 1rem;
-            }
-            
-            .testimonial-author p {
-                font-size: 0.85rem;
             }
             
             .whatsapp-button {
@@ -1415,82 +1271,10 @@
                 height: 55px;
             }
         }
-        
-        @media (max-width: 360px) {
-            .hero h1 {
-                font-size: 1.7rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.5rem;
-            }
-            
-            .logo {
-                font-size: 1.6rem;
-            }
-            
-            .product-title {
-                font-size: 1.2rem;
-            }
-            
-            .product-price {
-                font-size: 1.4rem;
-            }
-            
-            .social-name {
-                font-size: 1.2rem;
-            }
-            
-            .social-description {
-                font-size: 0.9rem;
-            }
-            
-            .whatsapp-button, .cart-float {
-                width: 50px;
-                height: 50px;
-                font-size: 1.3rem;
-            }
-            
-            .cart-float {
-                bottom: 160px;
-            }
-        }
-        
-        @media (max-width: 320px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-            
-            .hero p {
-                font-size: 0.95rem;
-                padding: 0 10px;
-            }
-            
-            .btn {
-                padding: 10px 25px;
-                font-size: 0.95rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.4rem;
-            }
-            
-            .social-card {
-                padding: 1.5rem;
-            }
-            
-            .contact-info, .contact-form-container {
-                padding: 1.3rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Header SIN carrito en menú -->
+    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
@@ -1514,7 +1298,7 @@
         </div>
     </header>
 
-    <!-- Carrito flotante (ÚNICA VERSIÓN) -->
+    <!-- Carrito flotante -->
     <div class="cart-float" id="cartFloat">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-float-count" id="cartFloatCount">0</span>
@@ -1527,9 +1311,6 @@
             <p>No elijas entre terapias y tecnología... ¡Combínalas y desata tu potencial total! Potencia tus sesiones de Reiki o Fisioterapia con nuestra tecnología cuántica de vanguardia para una transformación más rápida, profunda y duradera.</p>
             <a href="#productos" class="btn" id="shopBtn">Explorar Productos</a>
         </div>
-        
-        <!-- Partículas decorativas opcionales -->
-        <div class="hero-particles" id="heroParticles"></div>
     </section>
 
     <!-- Products Section -->
@@ -1578,19 +1359,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        Compré los parches para mi madre que sufre de artritis y los resultados han sido asombrosos. Ahora tiene más movilidad y menos dolor.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AG</div>
-                        <div>
-                            <h4>Ana Gómez</h4>
-                            <p>Cliente desde 2023</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1609,11 +1377,7 @@
                         <i class="fab fa-facebook-f"></i>
                     </div>
                     <h3 class="social-name">Facebook</h3>
-                    <p class="social-description">Únete a nuestra comunidad en Facebook. Compartimos consejos de bienestar, ofertas especiales y respondemos a todas tus preguntas.</p>
-                    <div class="social-followers">
-                        <i class="fas fa-users"></i>
-                        <span>+15K seguidores</span>
-                    </div>
+                    <p class="social-description">Únete a nuestra comunidad en Facebook.</p>
                     <a href="https://facebook.com" target="_blank" class="social-btn">Seguir en Facebook</a>
                 </div>
                 
@@ -1622,44 +1386,14 @@
                         <i class="fab fa-instagram"></i>
                     </div>
                     <h3 class="social-name">Instagram</h3>
-                    <p class="social-description">Contenido visual de nuestros productos en acción. Testimonios reales, videos demostrativos y sorteos exclusivos para seguidores.</p>
-                    <div class="social-followers">
-                        <i class="fas fa-users"></i>
-                        <span>+25K seguidores</span>
-                    </div>
+                    <p class="social-description">Contenido visual de nuestros productos en acción.</p>
                     <a href="https://instagram.com" target="_blank" class="social-btn">Seguir en Instagram</a>
-                </div>
-                
-                <div class="social-card social-tiktok">
-                    <div class="social-icon">
-                        <i class="fab fa-tiktok"></i>
-                    </div>
-                    <h3 class="social-name">TikTok</h3>
-                    <p class="social-description">Videos cortos y divertidos sobre bienestar, demostraciones de productos y testimonios rápidos de nuestros clientes satisfechos.</p>
-                    <div class="social-followers">
-                        <i class="fas fa-users"></i>
-                        <span>+50K seguidores</span>
-                    </div>
-                    <a href="https://tiktok.com" target="_blank" class="social-btn">Seguir en TikTok</a>
-                </div>
-                
-                <div class="social-card social-youtube">
-                    <div class="social-icon">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <h3 class="social-name">YouTube</h3>
-                    <p class="social-description">Tutoriales completos, entrevistas con expertos en bienestar, testimonios detallados y contenido educativo sobre tecnología cuántica.</p>
-                    <div class="social-followers">
-                        <i class="fas fa-users"></i>
-                        <span>+10K suscriptores</span>
-                    </div>
-                    <a href="https://youtube.com" target="_blank" class="social-btn">Suscribirse</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section - FORMULARIO MEJORADO -->
     <section class="contact-section" id="contacto">
         <div class="container">
             <div class="section-title">
@@ -1682,7 +1416,7 @@
                         <div class="contact-details">
                             <h4>Teléfono</h4>
                             <p class="highlight">+593 98 947 6071</p>
-                            <p>Línea directa disponible 24/7 para emergencias</p>
+                            <p>Línea directa disponible</p>
                         </div>
                     </div>
                     
@@ -1693,19 +1427,7 @@
                         <div class="contact-details">
                             <h4>Email</h4>
                             <p class="highlight">cuantumealiinfo@gmail.com</p>
-                            <p>Respuesta en menos de 24 horas hábiles</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Horario de Atención</h4>
-                            <p><strong>Lunes a Viernes:</strong> 9:00 AM - 18:00 PM</p>
-                            <p><strong>Sábados:</strong> 10:00 AM - 14:00 PM</p>
-                            <p><strong>Domingos:</strong> Cerrado</p>
+                            <p>Respuesta en menos de 24 horas</p>
                         </div>
                     </div>
                     
@@ -1727,18 +1449,27 @@
                     
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <label class="form-label" for="name">Nombre Completo *</label>
-                            <input type="text" id="name" class="form-input" placeholder="Ingresa tu nombre completo" required>
+                            <label class="form-label" for="name">
+                                Nombre Completo <span style="color: #ff5e7d;">*</span>
+                            </label>
+                            <input type="text" id="name" class="form-input" 
+                                   placeholder="Ingresa tu nombre completo" required>
+                            <div class="error-message" id="nameError"></div>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label" for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" class="form-input" placeholder="ejemplo@email.com" required>
+                            <label class="form-label" for="email">
+                                Correo Electrónico <span style="color: #ff5e7d;">*</span>
+                            </label>
+                            <input type="email" id="email" class="form-input" 
+                                   placeholder="ejemplo@email.com" required>
+                            <div class="error-message" id="emailError"></div>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label" for="phone">Teléfono</label>
-                            <input type="tel" id="phone" class="form-input" placeholder="+593 (98) 947-6071">
+                            <label class="form-label" for="phone">Teléfono (opcional)</label>
+                            <input type="tel" id="phone" class="form-input" 
+                                   placeholder="+593 98 947 6071">
                         </div>
                         
                         <div class="form-group">
@@ -1754,11 +1485,17 @@
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label" for="message">Mensaje *</label>
-                            <textarea id="message" class="form-textarea" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                            <label class="form-label" for="message">
+                                Mensaje <span style="color: #ff5e7d;">*</span>
+                            </label>
+                            <textarea id="message" class="form-textarea" 
+                                      placeholder="Escribe tu mensaje aquí..." 
+                                      required></textarea>
+                            <div class="error-message" id="messageError"></div>
                         </div>
                         
-                        <button type="submit" class="submit-btn">
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span class="loading-spinner"></span>
                             <i class="fas fa-paper-plane"></i>
                             <span>Enviar Mensaje</span>
                         </button>
@@ -1779,7 +1516,7 @@
                         <i class="fas fa-atom"></i>
                         <span>QUANTUM</span>
                     </div>
-                    <p>Parches de tecnología cuántica para el bienestar natural. Ayudamos a las personas a recuperar su equilibrio energético y mejorar su calidad de vida.</p>
+                    <p>Parches de tecnología cuántica para el bienestar natural.</p>
                 </div>
                 
                 <div class="footer-links">
@@ -1788,40 +1525,20 @@
                         <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#productos">Productos</a></li>
                         <li><a href="#testimonios">Testimonios</a></li>
-                        <li><a href="#redes">Redes Sociales</a></li>
                         <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Productos</h4>
-                    <ul>
-                        <li><a href="#productos">Parches Quantum Sleep</a></li>
-                        <li><a href="#productos">Parches Quantum Pain</a></li>
-                        <li><a href="#productos">Fisioterapia</a></li>
-                        <li><a href="#productos">Terapia Reiki</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Términos y condiciones</a></li>
-                        <li><a href="#">Política de privacidad</a></li>
-                        <li><a href="#">Garantía y devoluciones</a></li>
-                        <li><a href="#">Envíos y pagos</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 Parches Quantumé Alicia. Todos los derechos reservados.</p>
+                <p>&copy; 2024 Parches Quantumé Alicia. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/593989476071?text=Hola,%20estoy%20interesado%20en%20los%20parches%20Quantum" class="whatsapp-button" target="_blank" id="whatsappButton">
+    <a href="https://wa.me/593989476071?text=Hola,%20estoy%20interesado%20en%20los%20parches%20Quantum" 
+       class="whatsapp-button" target="_blank" id="whatsappButton">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1834,7 +1551,6 @@
             </div>
             
             <div class="cart-items" id="cartItems">
-                <!-- Los items del carrito se cargan aquí -->
                 <div class="empty-cart-message" id="emptyCartMessage">
                     <p>Tu carrito está vacío</p>
                     <p>Agrega productos desde nuestra tienda</p>
@@ -1859,16 +1575,23 @@
         </div>
     </div>
 
+    <!-- JavaScript Principal -->
     <script>
-        // URL de tu Google Apps Script (ACTUALIZADA CON CORS)
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxzq2bCYIAsvtW_eDhyuhHMzmtNEerIdiAUsId3sVRX3EMlc-OscrqEZpW5ht7ozAI8/exec';
+        // ============================================
+        // CONFIGURACIÓN PRINCIPAL
+        // ============================================
         
-        // Datos de productos
+        // URL DE TU GOOGLE APPS SCRIPT
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVxKhr4GpR81Ul00zqxLgv6RQRxqtXaxAyoBTfr7TjDYlGHcQKEBbZ84l7ZxSTT8rN/exec';
+        
+        // ============================================
+        // DATOS DE PRODUCTOS
+        // ============================================
         const products = [
             {
                 id: 1,
                 name: "Parches Quantumé Sleep",
-                description: "30 Parches con frecuencias específica para inducir un sueño profundo y reparador. Ayudan a regular el ciclo circadiano y mejorar la calidad del descanso. ¡Contactate y recibe hasta un 20% de descuento!",
+                description: "30 Parches con frecuencias específica para inducir un sueño profundo y reparador. ¡Contactate y recibe hasta un 20% de descuento!",
                 price: 150.00,
                 image: "qn1.webp",
                 tags: ["Sueño", "Relajación", "Descanso"]
@@ -1876,7 +1599,7 @@
             {
                 id: 2,
                 name: "Parches Quantumé Pain",
-                description: "Tecnología cuántica para aliviar dolores musculares y articulares. Los 30 parches emiten frecuencias que reducen la inflamación y promueven la recuperación natural. ¡Contactate y recibe hasta un 20% de descuento!",
+                description: "Tecnología cuántica para aliviar dolores musculares y articulares. ¡Contactate y recibe hasta un 20% de descuento!",
                 price: 150.00,
                 image: "qn2.webp",
                 tags: ["Dolor", "Recuperación", "Antiinflamatorio"]
@@ -1884,25 +1607,29 @@
             {
                 id: 3,
                 name: "Fisioterapia",
-                description: "Recupera tu función muscular y alivia tensiones con sesiones de fisioterapia manual, diseñadas para estimular la circulación energética y restaurar el equilibrio natural de tu cuerpo.",
+                description: "Recupera tu función muscular y alivia tensiones con sesiones de fisioterapia manual.",
                 price: 39.99,
                 image: "enfermera-con-paciente-en-sesion-de-osteopatia.webp",
-                tags: ["Terapia", "Sanación", "Continuidad"]
+                tags: ["Terapia", "Sanación"]
             },
             {
                 id: 4,
                 name: "Terapia Reiki",
-                description: "Aumenta tu energía y equilibrio con sesiones de Reiki, diseñadas para estimular el flujo energético y promover un bienestar integral.",
+                description: "Aumenta tu energía y equilibrio con sesiones de Reiki para promover un bienestar integral.",
                 price: 29.99,
                 image: "persona-que-realiza-terapia-de-reiki.webp",
-                tags: ["Concentración", "Mental", "Productividad"]
+                tags: ["Energía", "Equilibrio"]
             },
         ];
 
-        // Carrito de compras
+        // ============================================
+        // VARIABLES GLOBALES
+        // ============================================
         let cart = JSON.parse(localStorage.getItem('quantumCart')) || [];
         
-        // Elementos del DOM
+        // ============================================
+        // ELEMENTOS DEL DOM
+        // ============================================
         const productsGrid = document.getElementById('productsGrid');
         const cartFloat = document.getElementById('cartFloat');
         const cartFloatCount = document.getElementById('cartFloatCount');
@@ -1913,15 +1640,16 @@
         const cartTotal = document.getElementById('cartTotal');
         const checkoutBtn = document.getElementById('checkoutBtn');
         const clearCartBtn = document.getElementById('clearCartBtn');
-        const whatsappButton = document.getElementById('whatsappButton');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mainNav = document.getElementById('mainNav');
-        const shopBtn = document.getElementById('shopBtn');
         const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
         const formMessage = document.getElementById('formMessage');
-        const heroParticles = document.getElementById('heroParticles');
-        
-        // Mostrar productos
+        const loadingSpinner = document.querySelector('.loading-spinner');
+
+        // ============================================
+        // FUNCIONES DEL CARRITO
+        // ============================================
         function displayProducts() {
             productsGrid.innerHTML = '';
             
@@ -1958,7 +1686,6 @@
             });
         }
         
-        // Agregar producto al carrito CON EFECTO VISUAL
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
             
@@ -1986,7 +1713,6 @@
             showNotification(`${product.name} agregado al carrito`);
         }
         
-        // Actualizar carrito
         function updateCart() {
             // Guardar en localStorage
             localStorage.setItem('quantumCart', JSON.stringify(cart));
@@ -2015,12 +1741,8 @@
             // Actualizar total
             const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
             cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
-            
-            // Actualizar enlace de WhatsApp
-            updateWhatsAppLink();
         }
         
-        // Renderizar items del carrito
         function renderCartItems() {
             cartItems.innerHTML = '';
             
@@ -2072,7 +1794,6 @@
             });
         }
         
-        // Actualizar cantidad de un producto
         function updateQuantity(productId, change) {
             const item = cart.find(item => item.id === productId);
             
@@ -2088,20 +1809,17 @@
             }
         }
         
-        // Eliminar producto del carrito
         function removeFromCart(productId) {
             cart = cart.filter(item => item.id !== productId);
             updateCart();
         }
         
-        // Vaciar carrito
         function clearCart() {
             cart = [];
             updateCart();
             showNotification('Carrito vaciado');
         }
         
-        // Completar pedido por WhatsApp - CON REINICIO DE CARRITO
         function completeOrder() {
             if (cart.length === 0) {
                 showNotification('Agrega productos al carrito primero');
@@ -2120,10 +1838,7 @@
             
             const totalPrice = cartCopy.reduce((total, item) => total + (item.price * item.quantity), 0);
             message += `\n💰 *Total: $${totalPrice.toFixed(2)}*\n\n`;
-            message += "Por favor, necesito información para completar mi pedido:\n";
-            message += "1. Métodos de pago disponibles\n";
-            message += "2. Tiempos de envío\n";
-            message += "3. Costos de envío\n\n";
+            message += "Por favor, necesito información para completar mi pedido.\n\n";
             message += "¡Gracias!";
             
             // Codificar mensaje para URL
@@ -2137,15 +1852,180 @@
             updateCart();
             
             // Mostrar notificación de éxito
-            showNotification('¡Pedido enviado por WhatsApp! El carrito ha sido vaciado.');
+            showNotification('¡Pedido enviado por WhatsApp!');
             
-            // Abrir WhatsApp con el mensaje (después de vaciar el carrito)
+            // Abrir WhatsApp con el mensaje
             setTimeout(() => {
                 window.open(`https://wa.me/593989476071?text=${encodedMessage}`, '_blank');
             }, 500);
         }
         
-        // Mostrar notificación
+        // ============================================
+        // FUNCIONES DEL FORMULARIO DE CONTACTO
+        // ============================================
+        
+        function showFormError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const formGroup = field.closest('.form-group');
+            const errorElement = document.getElementById(fieldId + 'Error');
+            
+            formGroup.classList.remove('has-success');
+            formGroup.classList.add('has-error');
+            
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+        }
+        
+        function showFormSuccess(fieldId) {
+            const field = document.getElementById(fieldId);
+            const formGroup = field.closest('.form-group');
+            const errorElement = document.getElementById(fieldId + 'Error');
+            
+            formGroup.classList.remove('has-error');
+            formGroup.classList.add('has-success');
+            
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        }
+        
+        function validateField(fieldId) {
+            const field = document.getElementById(fieldId);
+            const value = field.value.trim();
+            
+            if (field.hasAttribute('required') && !value) {
+                showFormError(fieldId, 'Este campo es requerido');
+                return false;
+            }
+            
+            if (fieldId === 'email' && value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    showFormError(fieldId, 'Ingresa un email válido');
+                    return false;
+                }
+            }
+            
+            if (fieldId === 'message' && value) {
+                if (value.length < 10) {
+                    showFormError(fieldId, 'El mensaje debe tener al menos 10 caracteres');
+                    return false;
+                }
+            }
+            
+            showFormSuccess(fieldId);
+            return true;
+        }
+        
+        function validateForm() {
+            let isValid = true;
+            
+            // Validar campos requeridos
+            if (!validateField('name')) isValid = false;
+            if (!validateField('email')) isValid = false;
+            if (!validateField('message')) isValid = false;
+            
+            return isValid;
+        }
+        
+        async function submitContactForm(event) {
+            event.preventDefault();
+            
+            // Validar formulario
+            if (!validateForm()) {
+                showFormMessage('Por favor, corrige los errores en el formulario', 'error');
+                return;
+            }
+            
+            // Obtener datos del formulario
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim() || '',
+                subject: document.getElementById('subject').value || 'Consulta General',
+                message: document.getElementById('message').value.trim(),
+                timestamp: new Date().toISOString(),
+                source: 'quantum-website'
+            };
+            
+            // Mostrar estado de carga
+            submitBtn.disabled = true;
+            loadingSpinner.style.display = 'block';
+            submitBtn.querySelector('i').style.display = 'none';
+            submitBtn.querySelector('span:last-child').textContent = 'Enviando...';
+            
+            try {
+                console.log('Enviando datos a Google Sheets:', formData);
+                
+                // IMPORTANTE: Usar mode: 'no-cors' para Google Apps Script
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Esto es clave para evitar errores de CORS
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                // Con 'no-cors' no podemos leer la respuesta, pero sabemos que se envió
+                console.log('✅ Datos enviados exitosamente a Google Sheets');
+                
+                // Mostrar mensaje de éxito
+                showFormMessage(
+                    `¡Gracias ${formData.name}! Tu mensaje ha sido enviado correctamente. ` +
+                    `Te contactaremos pronto a ${formData.email}.`, 
+                    'success'
+                );
+                
+                // Limpiar formulario después de 3 segundos
+                setTimeout(() => {
+                    contactForm.reset();
+                    
+                    // Limpiar estados de validación
+                    document.querySelectorAll('.form-group').forEach(group => {
+                        group.classList.remove('has-error', 'has-success');
+                    });
+                    document.querySelectorAll('.error-message').forEach(error => {
+                        error.style.display = 'none';
+                    });
+                    
+                    formMessage.style.display = 'none';
+                }, 5000);
+                
+            } catch (error) {
+                console.error('❌ Error al enviar formulario:', error);
+                
+                // Mostrar mensaje de error
+                showFormMessage(
+                    'Hubo un error al enviar tu mensaje. ' +
+                    'Por favor, intenta nuevamente o contáctanos directamente por WhatsApp.', 
+                    'error'
+                );
+                
+            } finally {
+                // Restaurar botón
+                submitBtn.disabled = false;
+                loadingSpinner.style.display = 'none';
+                submitBtn.querySelector('i').style.display = 'inline-block';
+                submitBtn.querySelector('span:last-child').textContent = 'Enviar Mensaje';
+            }
+        }
+        
+        function showFormMessage(text, type) {
+            formMessage.textContent = text;
+            formMessage.className = 'form-message ' + type;
+            formMessage.style.display = 'block';
+            
+            // Desplazar hacia el mensaje
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // ============================================
+        // FUNCIONES AUXILIARES
+        // ============================================
+        
         function showNotification(message) {
             // Crear elemento de notificación
             const notification = document.createElement('div');
@@ -2181,265 +2061,36 @@
             }, 3000);
         }
         
-        // Actualizar enlace de WhatsApp con el contenido del carrito
-        function updateWhatsAppLink() {
-            if (cart.length === 0) {
-                // Si el carrito está vacío, usar mensaje predeterminado
-                whatsappButton.href = `https://wa.me/593989476071?text=${encodeURIComponent("Hola, estoy interesado en los parches Quantum. ¿Podrían darme más información?")}`;
-                return;
-            }
-            
-            let message = "Hola, estoy interesado en los siguientes productos Quantum:\n\n";
-            
-            cart.forEach(item => {
-                message += `• ${item.name} x${item.quantity}\n`;
-            });
-            
-            const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            message += `\n💰 Total aproximado: $${totalPrice.toFixed(2)}\n\n`;
-            message += "Me gustaría más información sobre estos productos.";
-            
-            const encodedMessage = encodeURIComponent(message);
-            whatsappButton.href = `https://wa.me/593989476071?text=${encodedMessage}`;
-        }
+        // ============================================
+        // INICIALIZACIÓN
+        // ============================================
         
-        // Validación del formulario de contacto con Google Sheets
-        function setupContactForm() {
-            contactForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // Validación básica
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const phone = document.getElementById('phone').value.trim();
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value.trim();
-                
-                // Limpiar mensajes anteriores
-                formMessage.className = 'form-message';
-                formMessage.textContent = '';
-                
-                // Limpiar clases de error/success anteriores
-                document.querySelectorAll('.form-group').forEach(group => {
-                    group.classList.remove('success', 'error');
-                    const errorMsg = group.querySelector('.error-message');
-                    if (errorMsg) errorMsg.remove();
-                });
-                
-                let isValid = true;
-                
-                // Validar nombre
-                if (name === '') {
-                    showFormError('name', 'Por favor ingresa tu nombre');
-                    isValid = false;
-                } else if (name.length < 2) {
-                    showFormError('name', 'El nombre debe tener al menos 2 caracteres');
-                    isValid = false;
-                } else {
-                    showFormSuccess('name');
-                }
-                
-                // Validar email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (email === '') {
-                    showFormError('email', 'Por favor ingresa tu correo electrónico');
-                    isValid = false;
-                } else if (!emailRegex.test(email)) {
-                    showFormError('email', 'Por favor ingresa un correo electrónico válido');
-                    isValid = false;
-                } else {
-                    showFormSuccess('email');
-                }
-                
-                // Validar mensaje
-                if (message === '') {
-                    showFormError('message', 'Por favor escribe tu mensaje');
-                    isValid = false;
-                } else if (message.length < 10) {
-                    showFormError('message', 'El mensaje debe tener al menos 10 caracteres');
-                    isValid = false;
-                } else {
-                    showFormSuccess('message');
-                }
-                
-                if (isValid) {
-                    // Deshabilitar botón durante el envío
-                    const submitBtn = contactForm.querySelector('.submit-btn');
-                    const originalText = submitBtn.innerHTML;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-                    submitBtn.disabled = true;
-                    
-                    try {
-                        // Obtener IP del usuario
-                        let ip = '';
-                        try {
-                            const ipResponse = await fetch('https://api.ipify.org?format=json');
-                            const ipData = await ipResponse.json();
-                            ip = ipData.ip;
-                        } catch (ipError) {
-                            console.log('No se pudo obtener la IP');
-                        }
-                        
-                        // Preparar datos para enviar
-                        const formData = {
-                            name: name,
-                            email: email,
-                            phone: phone || '',
-                            subject: subject || 'Consulta Web',
-                            message: message,
-                            ip: ip || 'No detectada',
-                            timestamp: new Date().toISOString(),
-                            source: 'quantium-parches-web'
-                        };
-                        
-                        console.log('Enviando datos a Google Sheets:', formData);
-                        
-                        // Enviar datos a Google Apps Script CON CORS
-                        const response = await fetch(GOOGLE_SCRIPT_URL, {
-                            method: 'POST',
-                            mode: 'cors',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(formData)
-                        });
-                        
-                        console.log('Respuesta del servidor:', response);
-                        
-                        // Intentar leer la respuesta
-                        let result;
-                        try {
-                            const text = await response.text();
-                            console.log('Texto de respuesta:', text);
-                            result = JSON.parse(text);
-                        } catch (parseError) {
-                            console.log('Error parseando respuesta:', parseError);
-                            // Si no se puede parsear como JSON, asumimos éxito
-                            result = { resultado: 'exito', mensaje: 'Mensaje enviado exitosamente' };
-                        }
-                        
-                        // Mostrar mensaje de éxito
-                        formMessage.className = 'form-message success';
-                        formMessage.innerHTML = `
-                            <i class="fas fa-check-circle"></i>
-                            <strong>¡Mensaje enviado con éxito!</strong><br>
-                            Gracias ${name}, tu mensaje ha sido enviado. Nos pondremos en contacto contigo en menos de 24 horas.
-                            <br><small><em>Los datos se han guardado en nuestra base de datos.</em></small>
-                        `;
-                        
-                        // Desplazar hacia el mensaje de éxito
-                        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        
-                        // Resetear formulario después de 3 segundos
-                        setTimeout(() => {
-                            contactForm.reset();
-                            formMessage.className = 'form-message';
-                            formMessage.textContent = '';
-                            // Limpiar clases de validación
-                            document.querySelectorAll('.form-group').forEach(group => {
-                                group.classList.remove('success', 'error');
-                            });
-                        }, 5000);
-                        
-                    } catch (error) {
-                        console.error('Error enviando formulario:', error);
-                        
-                        // En caso de error de red o CORS
-                        formMessage.className = 'form-message error';
-                        formMessage.innerHTML = `
-                            <i class="fas fa-exclamation-circle"></i>
-                            <strong>Error de conexión</strong><br>
-                            No se pudo enviar el mensaje directamente. Por favor, contáctanos directamente por WhatsApp o email.
-                            <br><small><em>Error: ${error.message}</em></small>
-                        `;
-                        
-                        // Desplazar hacia el mensaje de error
-                        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        
-                    } finally {
-                        // Restaurar botón
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    }
-                } else {
-                    formMessage.className = 'form-message error';
-                    formMessage.innerHTML = `
-                        <i class="fas fa-exclamation-circle"></i>
-                        Por favor corrige los errores en el formulario antes de enviar.
-                    `;
-                    
-                    // Desplazar hacia el mensaje de error
-                    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-            });
-            
-            // Función auxiliar para mostrar errores de validación
-            function showFormError(fieldId, message) {
-                const field = document.getElementById(fieldId);
-                const formGroup = field.closest('.form-group');
-                formGroup.classList.remove('success');
-                formGroup.classList.add('error');
-                
-                // Mostrar mensaje de error si no existe
-                let errorMsg = formGroup.querySelector('.error-message');
-                if (!errorMsg) {
-                    errorMsg = document.createElement('div');
-                    errorMsg.className = 'error-message';
-                    formGroup.appendChild(errorMsg);
-                }
-                errorMsg.textContent = message;
-            }
-            
-            // Función auxiliar para mostrar éxito de validación
-            function showFormSuccess(fieldId) {
-                const field = document.getElementById(fieldId);
-                const formGroup = field.closest('.form-group');
-                formGroup.classList.remove('error');
-                formGroup.classList.add('success');
-                
-                // Eliminar mensaje de error si existe
-                const errorMsg = formGroup.querySelector('.error-message');
-                if (errorMsg) {
-                    errorMsg.remove();
-                }
-            }
-        }
-        
-        // Crear partículas decorativas para el hero
-        function createParticles() {
-            if (!heroParticles) return;
-            
-            const particleCount = 20;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Tamaño aleatorio entre 2px y 8px
-                const size = Math.random() * 6 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Posición aleatoria
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Animación
-                const duration = Math.random() * 10 + 10;
-                const delay = Math.random() * 5;
-                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-                
-                heroParticles.appendChild(particle);
-            }
-        }
-        
-        // Inicializar
         function init() {
             displayProducts();
             updateCart();
-            setupContactForm();
-            createParticles();
             
-            // Event listener para el carrito flotante
+            // Configurar formulario de contacto
+            contactForm.addEventListener('submit', submitContactForm);
+            
+            // Validación en tiempo real
+            document.querySelectorAll('#contactForm input, #contactForm textarea, #contactForm select').forEach(field => {
+                field.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') || this.value.trim()) {
+                        validateField(this.id);
+                    }
+                });
+                
+                // Limpiar error al escribir
+                field.addEventListener('input', function() {
+                    const formGroup = this.closest('.form-group');
+                    const errorElement = document.getElementById(this.id + 'Error');
+                    
+                    formGroup.classList.remove('has-error');
+                    if (errorElement) errorElement.style.display = 'none';
+                });
+            });
+            
+            // Event listeners del carrito
             cartFloat.addEventListener('click', () => {
                 cartModal.classList.add('open');
             });
@@ -2503,75 +2154,24 @@
                 cartFloat.style.transform = 'scale(1) translateY(0)';
             });
             
-            // Validación en tiempo real para el formulario
-            document.querySelectorAll('#contactForm input, #contactForm textarea').forEach(input => {
-                input.addEventListener('blur', function() {
-                    const fieldId = this.id;
-                    const value = this.value.trim();
-                    
-                    if (fieldId === 'name') {
-                        if (value === '') {
-                            showFormError(fieldId, 'Por favor ingresa tu nombre');
-                        } else if (value.length < 2) {
-                            showFormError(fieldId, 'El nombre debe tener al menos 2 caracteres');
-                        } else {
-                            showFormSuccess(fieldId);
-                        }
-                    }
-                    
-                    if (fieldId === 'email') {
-                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        if (value === '') {
-                            showFormError(fieldId, 'Por favor ingresa tu correo electrónico');
-                        } else if (!emailRegex.test(value)) {
-                            showFormError(fieldId, 'Por favor ingresa un correo electrónico válido');
-                        } else {
-                            showFormSuccess(fieldId);
-                        }
-                    }
-                    
-                    if (fieldId === 'message') {
-                        if (value === '') {
-                            showFormError(fieldId, 'Por favor escribe tu mensaje');
-                        } else if (value.length < 10) {
-                            showFormError(fieldId, 'El mensaje debe tener al menos 10 caracteres');
-                        } else {
-                            showFormSuccess(fieldId);
-                        }
-                    }
+            console.log('✅ Aplicación Quantum inicializada correctamente');
+            console.log('🔗 URL de Google Script:', GOOGLE_SCRIPT_URL);
+            
+            // Probar conexión con Google Apps Script
+            fetch(GOOGLE_SCRIPT_URL)
+                .then(response => response.text())
+                .then(() => {
+                    console.log('✅ Conexión con Google Apps Script establecida');
+                })
+                .catch(error => {
+                    console.warn('⚠️ No se pudo verificar la conexión con Google Apps Script:', error.message);
                 });
-            });
-            
-            // Función auxiliar para mostrar errores (para validación en tiempo real)
-            function showFormError(fieldId, message) {
-                const field = document.getElementById(fieldId);
-                const formGroup = field.closest('.form-group');
-                formGroup.classList.remove('success');
-                formGroup.classList.add('error');
-                
-                let errorMsg = formGroup.querySelector('.error-message');
-                if (!errorMsg) {
-                    errorMsg = document.createElement('div');
-                    errorMsg.className = 'error-message';
-                    formGroup.appendChild(errorMsg);
-                }
-                errorMsg.textContent = message;
-            }
-            
-            function showFormSuccess(fieldId) {
-                const field = document.getElementById(fieldId);
-                const formGroup = field.closest('.form-group');
-                formGroup.classList.remove('error');
-                formGroup.classList.add('success');
-                
-                const errorMsg = formGroup.querySelector('.error-message');
-                if (errorMsg) {
-                    errorMsg.remove();
-                }
-            }
         }
         
-        // Ejecutar inicialización cuando el DOM esté cargado
+        // ============================================
+        // EJECUTAR INICIALIZACIÓN
+        // ============================================
+        
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
